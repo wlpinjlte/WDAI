@@ -1,0 +1,31 @@
+#kontener{
+    display:grid;
+    background-color: aqua;
+    gap: 10px;
+    padding:10px;
+    grid-template-rows: 100px 100px 100px 100px;
+    
+}
+.class1 {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+.class2{
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+.class3{
+    grid-row-start: 2;
+    grid-row-end: 5;
+}
+.class4{
+    grid-column-start: 3;
+    grid-column-end: 4;
+}
+#kontener>div{
+    background-color: rgb(191, 248, 34);
+}

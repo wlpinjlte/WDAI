@@ -1,0 +1,41 @@
+.class1{
+    grid-area: header;
+}
+.class2{
+    grid-area: strongl;
+}
+.class3{
+    grid-area: galeria;
+}
+.class4{
+    grid-area: lokalizacja;
+}
+.class5{
+    grid-area: kontakt;
+}
+.class6{
+    grid-area: lewakol;
+}
+.class7{
+    grid-area: main;
+}
+.class8{
+    grid-area: footer;
+}
+#grid{
+    display: grid;
+    grid-template:
+    "header header header header" 100px
+    'strongl galeria lokalizacja kontakt'
+    'lewakol main main main'623px
+    'footer footer footer footer';
+    background-color: #2196F3;
+    gap: 10px;
+    padding:10px;
+}
+#grid>div{
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 20px 0;
+    font-size: 30px;
+}

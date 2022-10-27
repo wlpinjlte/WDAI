@@ -1,0 +1,32 @@
+#kontener{
+    display:flex;
+    flex-direction: column;
+}
+#jeden{
+    width: 100%;
+    height: 200px;
+    border-radius: 50px;
+    background-color: rgb(32, 115, 187);
+    margin-bottom: 20px;
+}
+#dwa{
+    width: 25%;
+    height: 200px;
+    border-radius: 50px;
+    background-color: rgb(32, 115, 187);
+    margin-bottom: 20px;
+}
+#trzy{
+    width: 40%;
+    height: 200px;
+    border-radius: 50px;
+    background-color: rgb(32, 115, 187);
+    margin-bottom: 20px;
+    margin-left: 20%;
+}
+#cztery{
+    width: 30%;
+    height: 200px;
+    border-radius: 50px;
+    background-color: rgb(32, 115, 187);
+}

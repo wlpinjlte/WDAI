@@ -1,0 +1,51 @@
+#menu{
+    margin-top:1.5vh;
+    height:100vh;
+    transition: width 1s;
+    float:left;
+    width: 200px;
+}
+
+.elemnts{
+    height: 5vh;
+    width: 92%;
+    border-radius: 0 10px 10px 0;
+    margin-bottom: 1.5vh;
+    display: flex;
+    color:rgb(30,129,176);
+    padding-left: 3%;
+    font-size: 0.9rem;
+    align-items: center;
+}
+
+body{
+    margin:0;
+}
+
+.tresc1{
+    color:rgb(29, 106, 206);
+}
+
+.elemnts:hover{
+    background-color: lightseagreen;
+    color:white;
+}
+
+#border{
+    height: 99vh;
+    border-left: 99vh;
+    border:solid wheat;
+    float:left;
+}
+
+@media only screen and (max-width: 640px) {
+    #menu{
+        width: 10%;
+    }
+    .tresc1{
+        display:none;
+    }
+    .elemnts{
+        justify-content: center;
+    }
+}

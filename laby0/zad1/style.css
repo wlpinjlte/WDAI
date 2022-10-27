@@ -1,0 +1,60 @@
+#akp2{
+    background-color: aqua;
+    text-align: center;
+    font-size:30px;
+    overflow: scroll;
+    height: 30px;
+    width: 100%;
+}
+#akp1{
+    background-color: rgb(160, 165, 113);
+    text-align: center;
+    font-size:30px;
+    padding:20px;
+    margin:50px 10px 100px 10px;
+    border:10px solid rgb(27, 29, 189)
+}
+#siema{
+    background-color: rgb(172, 56, 35);
+    text-align: right;
+    font-size:60px;
+}
+#nag2{
+    background-color: rgb(20, 27, 15);
+    text-align: left;
+    font-size:90px;
+}
+td{
+    width: 24%;
+    height:50px;
+}
+#tab1{
+    width: 100%;
+    border-spacing: 3px;
+}
+.nag{
+    background-color: rgb(48, 109, 189);
+    
+}
+.class1{
+    background-color: rgb(119, 167, 230);
+}
+.class2{
+    background-color: rgb(188, 205, 228);
+}
+.nagg{
+    border:2px solid black;
+    background-color: rgb(75, 75, 75);
+}
+.tab2td{
+    width:33%;
+    height:50px;
+    border:2px solid black;
+    background-color: rgba(184, 195, 204, 0.637);
+}
+#tab2{
+    width: 100%;
+    border:2px solid black;
+    border-spacing: 0;
+    border-collapse: collapse;
+}

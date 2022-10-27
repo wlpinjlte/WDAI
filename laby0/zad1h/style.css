@@ -1,0 +1,18 @@
+#zdj1{
+    height: 100px;
+    width: 500px;
+    float:left;
+    background-color: aqua;
+}
+#clear{
+    clear: both;
+}
+#zdj2{
+    height: 100px;
+    width: 500px;
+    float:right;
+    background-color: aqua;
+}
+body{
+    font-size: 50px;
+}
