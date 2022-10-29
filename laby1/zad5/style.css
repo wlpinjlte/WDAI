@@ -24,6 +24,7 @@ body{
 
 .tresc1{
     color:rgb(29, 106, 206);
+    margin-left:5%;
 }
 
 .elemnts:hover{
@@ -36,6 +37,9 @@ body{
     border-left: 99vh;
     border:solid wheat;
     float:left;
+}
+div>i{
+    font-size: 1.3rem;
 }
 
 @media only screen and (max-width: 640px) {

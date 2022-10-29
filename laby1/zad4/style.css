@@ -93,6 +93,7 @@ nav>a:hover{
     width: 190%;
     margin: 0;
     padding: 0;
+    position:relative;
 }
 
 nav>a:nth-child(2):hover .list{
@@ -109,32 +110,21 @@ nav>a:nth-child(3):hover .list{
     border: 1px solid #61b4e3;
     text-align: left;
     padding-left: 10%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .link:hover::after{
     content:'▸';
     font-size: 2rem;
     position:relative;
-    left:55%;
 }
 
-#list1:after{
+.list::before{
     content:''; /* Required to display content */
     position: absolute; /* Sets the position absolute to the top div */
-    top: 9%;
-    left: 41.5%;/* position the little arrow */
-    width: 0;
-    height: 0;
-    border-bottom: solid 10px rgb(255, 255, 255); /* Creates the arrow pointing up, to change to a notch instead user border-top */
-    border-left: solid 10px transparent; /* Creates triangle effect */
-    border-right: solid 10px transparent; /* Creates triangle effect */
-}
-
-#list2:after{
-    content:''; /* Required to display content */
-    position: absolute; /* Sets the position absolute to the top div */
-    top: 9%;
-    left: 48%;/* position the little arrow */
+    top:-9.7px;
+    left:15%;
     width: 0;
     height: 0;
     border-bottom: solid 10px rgb(255, 255, 255); /* Creates the arrow pointing up, to change to a notch instead user border-top */
