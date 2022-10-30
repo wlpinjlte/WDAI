@@ -65,11 +65,11 @@ body{
 }
 
 #hamburger:checked~#barlist>div:nth-child(1){
-    transform: rotate(45deg) translateY(9px) translateX(9px);
+    transform: rotate(405deg) translateY(9px) translateX(9px);
 }
 
 #hamburger:checked~#barlist>div:nth-child(2){
-    transform: rotate(-45deg) translateY(-1px);
+    transform: rotate(-405deg) translateY(-1px);
 }
 
 #hamburger:checked~#barlist>div:nth-child(3){
