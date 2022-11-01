@@ -25,7 +25,7 @@ ul{
     overflow: hidden;
 }
 
-li:has(>input:checked){
+li:has(>.turn-on:checked){
     background-color: red;
 }
 
@@ -52,18 +52,37 @@ input{
 
 .inside-menu>a:hover{
     background: rgb(1,165,206);
-background: linear-gradient(180deg, rgba(1,165,206,1) 48%, rgba(209,203,203,1) 48%);
+    background: linear-gradient(180deg, rgba(1,165,206,1) 48%, rgba(209,203,203,1) 48%);
 }
 
 
 
-input:checked~.inside-menu{
+.turn-on:checked~.inside-menu{
     max-height: 100vh;
 }
+
+.turn-on{
+    z-index: 2;
+}
+
+.turn-off{
+    z-index:1;
+}
+
+.turn-on:checked{
+    z-index: 1;
+}
+
+.turn-on:checked+.off{
+    z-index: 2;
+}
+
 input:checked{
     height: 20%;
 }
-
+.turn-off:checked{
+    max-height: 0;
+}
 li:nth-last-child(1)>input:checked{
     height: 100%;
 }
@@ -78,9 +97,6 @@ li>span::after{
     z-index: 2;
 }
 
-/* input:checked~span::after{
-    opacity: 1;
-} */
 li:nth-last-child(1)>span::after{
     opacity: 0;
 }
