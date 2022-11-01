@@ -1,0 +1,89 @@
+body{
+    margin:0;
+    padding:0;
+    background-color: yellow;
+    font-display: flex;
+    justify-content: center;
+}
+
+ul{
+    width: 30%;
+    margin:0;
+    padding:0;
+    margin-left: auto;
+    margin-right: auto;
+    list-style: none;
+    border-radius: 20px;
+    position: relative;
+}
+
+.inside-menu{
+    max-height: 0;
+    display: flex;
+    flex-direction: column;
+    transition: 1s;
+    overflow: hidden;
+}
+
+li:has(>input:checked){
+    background-color: red;
+}
+
+.inside-menu>a{
+    padding: 20px;
+    background-color: rgb(1, 165, 206);
+    text-decoration: none;
+    color: white;
+}
+
+input{
+    width: 100%;
+    opacity: 0;
+    position: absolute;
+    height: 100%;
+    z-index: 2;
+    left:0;
+    top:0;
+}
+
+input:checked~.inside-menu{
+    max-height: 20rem;
+}
+
+/* input:checked~li:has(>input:checked)>.inside-menu{
+    max-height: 0;
+} */
+
+li>input:checked~li{
+    background-color: red;
+}
+
+li{
+    background-color: rgb(233, 57, 139);
+    height: fit-content;
+    position: relative;
+    color: white;
+}
+
+li>span{
+    font-size:2rem;
+    padding: 20px;
+    position: relative;
+    display: block;
+}
+
+.inside-menu>a{
+    font-size: 2rem;
+
+}
+
+li:nth-child(1){
+    border-radius: 20px 20px 0 0;
+}
+
+li:nth-last-child(1){
+    border-radius: 0 0 20px 20px;
+}
+li:nth-last-child(1) a:nth-last-child(1){
+    border-radius: 0 0 20px 20px;
+}
