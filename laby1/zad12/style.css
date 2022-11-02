@@ -137,8 +137,8 @@ h2{
 }
 
 #buy-price>button{
-    width: 40%;
-    height: 3vw;
+    width: 50%;
+    height: 4vw;
     font-size: 1.1em;
     background-color: var(--color);
     color: white;
@@ -256,13 +256,13 @@ h1::after{
         position: relative;
         top:-20%;
         width: 100%;
-        transform: rotate(0);
-        left:0;
+        transform: rotate(-5deg);
+        left:-10%;
     }
     .nike-text{
-        left:-3300%;
-        top:-850%;
-        font-size: 10em;
+        left:-1450%;
+        top:-400%;
+        font-size: 28vw;
         position: absolute;
     }
     #background .nike-text{
@@ -305,7 +305,23 @@ h1::after{
         background-color: rgb(71, 71, 71);
         border: 1vw solid rgb(71, 71, 71);
     }
+    #background>i{
+        font-size: 5.5vw;
+    }
 }
-@media screen and (min-width:401px) and (max-width: 650px){
-    
+@media screen and (min-width:641px) and (max-width: 830px){
+    main{
+        width: 80%;
+    }
+    #menu-card{
+        font-size: 1.7vw;
+    }
+}
+@media screen and (min-width:831px) and (max-width: 915px){
+    main{
+        width: 80%;
+    }
+    #menu-card{
+        font-size: 1.5vw;
+    }
 }
