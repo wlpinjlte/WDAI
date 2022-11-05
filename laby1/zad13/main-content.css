@@ -1,0 +1,140 @@
+.article-background{
+    position: relative;
+    width: 95%;
+    height: fit-content;
+    background-color: rgba(255, 255, 255, 0.527);
+    -webkit-clip-path: polygon(10% 0, 100% 0%, 90% 100%, 0% 100%);
+    clip-path: polygon(10% 0, 100% 0%, 90% 100%, 0% 100%);
+    margin-bottom: 5vh;
+}
+
+main>.article-background:nth-last-child(1){
+    margin-bottom: 0;
+}
+
+.article-content img{
+    position: relative;
+    clip-path: circle();
+    overflow: hidden;
+    width: 25%;
+    float:left;
+    box-sizing: border-box;
+    shape-outside: circle();
+    margin-right: 30px;
+}
+
+.article-content{
+    margin-left:10%;
+    margin-right: 10%;
+    height: fit-content;
+    margin-top:5vh;
+    margin-bottom: 5vh;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url("image/sunset.jpg");
+    position: relative;
+}
+
+#opacity{
+    background-color: rgba(255, 255, 255, 0.411);
+    position: absolute;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+}
+
+#form-background{
+    z-index: 2;
+    height: 45vh;
+    width: 95%;
+    background-image: url("image/forest.jpg");
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    width: 60%;
+    -webkit-clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+    background-color: rgba(255, 255, 255, 0.697);
+    padding-left:5%;
+}
+
+form h2{
+    background: linear-gradient(90deg, rgba(16,151,38,1) 5%, rgba(62,255,166,1) 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+form input[type=text]{
+    width: 70%;
+    border: 0;
+    padding:1rem;
+}
+
+form input[type=radio]{
+    opacity: 1;
+    width: 1.2rem;
+    height: 1.2rem;
+    border: 2px solid rgb(25, 189, 25);
+    color:green;
+    position: relative;
+}
+
+form input[type=radio]::after{
+    content: '';
+    height: 1.2rem;
+    width: 1.2rem;
+    border: 3px solid rgb(48, 133, 48);
+    position: absolute;
+    border-radius: 100%;
+    box-sizing: border-box;
+}
+
+form input[type=radio]:checked::before{
+    position: absolute;
+    content: '';
+    height: 0.7rem;
+    width: 0.7rem;
+    background-color: green;
+    border-radius: 100%;
+    left:22%;
+    top:22%;
+    
+}
+
+form a{
+    width: 50%;
+    padding: 1rem;
+    background: rgb(16,151,38);
+    border-radius: 40px;
+    text-align: center;
+    font-size: 0.8rem;
+    color:white;
+}
+
+form label{
+    font-size: 0.6rem;
+    text-align: center;
+    vertical-align: text-top;
+    margin-bottom:50%;
+}
+
+#choose{
+    width: 80%;
+}
+
+a{
+    text-decoration: none;
+}
+
+h2{
+    font-size: 1.4rem;
+}

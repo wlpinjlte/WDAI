@@ -117,7 +117,11 @@ body{
         animation-duration: 1.5s;
     }
 }
-
+@media screen and (max-width: 900px) {
+    #background{
+        clip-path: polygon(0 0, 100% 0, 100% 50%, 0 70%);
+    }
+}
 
 @keyframes leftGetIn {
     from {transform: translateX(-20%); opacity: 0.4;}
