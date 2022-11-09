@@ -6,10 +6,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
+    z-index: 2;
 }
-area p:nth-child(1){
-    cursor: arrow;
+body p:nth-child(2){
+    position: absolute;
+    z-index: 1;
 }
 #ballon{
    height: 50px;
@@ -25,4 +26,7 @@ body{
     padding:0;
     margin:0;
     height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
