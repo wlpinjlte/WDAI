@@ -1,0 +1,82 @@
+#container{
+    display: flex;
+    flex-direction: column;
+    gap:5vh;
+    align-items: center;
+    font-family: sans-serif;
+}
+
+body{
+    padding:0;
+    margin:0;
+    background-color: rgb(215, 233, 243);
+}
+
+form{
+    margin-top:2vh;
+    display:flex;
+    width:85%;
+    justify-content: space-between;
+    background-color: white;
+    padding:25px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:5vh;
+}
+
+form>input{
+    width:35%;
+    height: 4.5vh;
+    border-color: grey;
+    position: relative;
+}
+
+form>label:nth-child(2){
+    position: absolute;
+    top:4%;
+    font-size: 0.5rem;
+    left:7.5%;
+}
+
+form>label:nth-child(4){
+    position: absolute;
+    top:4%;
+    font-size: 0.5rem;
+    left:41.5%;
+}
+
+form>button{
+    width:20%;
+    background-color: green;
+    border:0;
+    color:white;
+    border-radius: 5px;
+}
+
+.element{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width:85%;
+    height: 5vh;
+    background-color: white;
+    padding:25px;
+}
+
+.element>span>p:nth-child(1){
+    font-weight: bold;
+}
+
+.element>button{
+    height: 100%;
+    width: 2.5rem;
+    background-color: green;
+    border: 0;
+    border-radius: 5px;
+    color:white;
+    font-size: 1.2rem;
+}
+
+button{
+    cursor: pointer;
+}

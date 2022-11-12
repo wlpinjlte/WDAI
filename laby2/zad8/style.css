@@ -1,0 +1,48 @@
+.positive{
+    color:rgb(6, 212, 157);
+}
+
+.negative{
+    color:grey;
+}
+
+input{
+    border-color: grey;
+    border-radius: 5px;
+    outline: none;
+    box-sizing: border-box;
+    width: 15rem;
+    height: 2rem;
+}
+
+label{
+    position: relative;
+}
+
+input:focus{
+    border: 3px solid rgb(6, 212, 157);
+}
+
+label>i{
+    position: absolute;
+    right:4%;
+    top:18%;
+    cursor: pointer;
+}
+
+label>i:nth-child(3){
+    display: none;
+}
+
+p{
+    font-size: 1.3rem;
+    font-family: sans-serif;
+}
+
+#requrementsCheck>p{
+    font-size: 1rem;
+}
+
+#requrementsCheck>p>i:nth-child(1){
+    display: none;
+}
