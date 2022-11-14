@@ -1,0 +1,34 @@
+{
+    "workers":[
+        {
+            "name": "Jan Kowalski",
+            "position": "Product Manager",
+            "img": "JanKowalski.png",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, maiores adipisci? Ex, recusandae aliquid cupiditate id rem nobis nemo ad! Sint suscipit molestiae ullam, rem rerum cum laborum perferendis dicta!"
+        },
+        {
+            "name": "Gal Anonim",
+            "position": "Chronicler",
+            "img": "GalAnonim.jpg",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, facilis. Laborum, officiis cum illum ad, natus incidunt libero quasi nam inventore rerum consectetur quaerat iusto!"
+        },
+        {
+            "name": "Elon Musk",
+            "position": "CEO TESLA",
+            "img": "ElonMusk.jpg",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate aperiam est explicabo voluptatem nemo sapiente, iure corporis placeat, sunt ex esse sed illum, magnam vitae!"
+        },
+        {
+            "name": "Rafał Zaorski",
+            "position": "Speculator",
+            "img": "RafałZaorski.jpg",
+            "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id obcaecati quo vel aliquid sequi eligendi unde, nobis fugit veniam alias nesciunt deserunt quae? Beatae atque velit officiis deleniti."
+        },
+        {
+            "name": "Lionel Messi",
+            "position": "Footballer",
+            "img": "LionelMessi.jpg",
+            "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum praesentium atque neque maxime id dolores saepe enim non, exercitationem illum? Accusamus dolorem placeat pariatur omnis repellendus cupiditate, eligendi perferendis."
+        }
+    ]
+}

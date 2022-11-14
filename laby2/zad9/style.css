@@ -1,22 +1,107 @@
 body{
     font-family: sans-serif;
     margin:0;
-    background-color: rgb(214, 235, 236);
+    background-color: rgb(240, 244, 247);
 }
 header{
     color:rgb(15, 60, 126);
-    font-size: 2rem;
+    font-size: 2.5rem;
     display: flex;
     justify-content: center;
     font-weight: 700;
 }
 header>span{
-    font-size: 1.8rem;
-    color:rgb(0, 140, 255);
+    font-size: 2.3rem;
+    color:rgb(73, 166, 233);
     font-weight: bold;
     padding-right: 10px;
     align-self: flex-end;
 }
 header>p{
     margin:0;
+}
+#container{
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+#content>i{
+    color: rgb(73, 166, 233);;
+    font-size: 4rem;
+}
+#content>img{
+    width: 8rem;
+    border-radius: 50%;
+    border: 5px solid white;
+    box-shadow: 0 0 15px gray;
+}
+#content>p{
+    width: 45%;
+    color:rgb(153, 167, 188);
+}
+#content>h3:nth-of-type(1){
+    margin-bottom: 0;
+    color:rgb(73, 166, 233);;
+}
+#content>h3:nth-of-type(2){
+    margin-top: 1rem;
+    color:rgb(153, 167, 188);
+}
+#container>button{
+    position: absolute;
+    top:17%;
+    width: 1.8rem;
+    height: 2.1rem;
+    background-color: rgb(95,126,154);
+    color:white;
+    border: 0;
+    border-radius: 5px;
+    font-size: 1.2rem;
+}
+#left{
+    left:18%;
+}
+#right{
+    right:18%;
+}
+#container>button:nth-of-type(3){
+    position: relative;
+    width: fit-content;
+    padding: 0.5rem;
+    text-align: center;
+    line-height: 1.2rem;
+    border-radius:10px;
+    margin-top: 1rem;
+}
+#content{
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+#container>button:hover{
+    border: 2px solid greenyellow;
+}
+#container>button:nth-of-type(3):hover{
+    line-height: 0.9rem;
+}
+@keyframes leftIn{
+    0%{left:-20%;opacity: 0;}
+    100%{left:0px;opacity: 1;}
+}
+@keyframes rightOut{
+    0%{left:0px;opacity: 1;}
+    100%{left:20%;opacity: 0;}
+}
+@keyframes leftOut{
+    0%{left:0px;opacity: 1;}
+    100%{left:-20%;opacity: 0;}
+}
+@keyframes rightIn{
+    0%{left:20%;opacity: 0;}
+    100%{left:0;opacity: 1;}
 }
