@@ -33,41 +33,41 @@ getapi().then(data=>{
     const n=workers.length;
     changeData(workers[i]);
     rightButton.addEventListener("click",()=>{
-        content.style="animation-name:rightOut;animation-duration:1s";
+        content.style="animation-name:rightOut;animation-duration:0.25s";
         i+=1;
         setTimeout(()=>{
-            changeData(workers[i%n]);
-            content.style="animation-name:leftIn;animation-duration:1s";
-        },1000);
+            changeData(workers[i%n]); 
+            content.style="animation-name:leftIn;animation-duration:0.25s";
+        },230);
     })
 
     leftButton.addEventListener("click",()=>{
-        content.style="animation-name:leftOut;animation-duration:1s";
+        content.style="animation-name:leftOut;animation-duration:0.25s";
         i-=1;
         if(i<0){
             i=n+i;
         }
         setTimeout(()=>{
             changeData(workers[i%n]);
-            content.style="animation-name:rightIn;animation-duration:1s";
-        },1000);
+            content.style="animation-name:rightIn;animation-duration:0.25s";
+        },230);
     })
 
     randomButton.addEventListener("click",()=>{
         coin=Math.round(Math.random()*2);
-        i=Math.round(Math.random()*20*n/20);
+        i=Math.floor(Math.random()*20*n/20);
         if(coin==0){
-            content.style="animation-name:leftOut;animation-duration:1s";
+            content.style="animation-name:leftOut;animation-duration:0.25s";
             setTimeout(()=>{
                 changeData(workers[i%n]);
-                content.style="animation-name:rightIn;animation-duration:1s";
-            },1000);
+                content.style="animation-name:rightIn;animation-duration:0.25s";
+            },230);
         }else{
-            content.style="animation-name:rightOut;animation-duration:1s";
+            content.style="animation-name:rightOut;animation-duration:0.25s";
             setTimeout(()=>{
                 changeData(workers[i%n]);
-                content.style="animation-name:leftIn;animation-duration:1s";
-            },1000);
+                content.style="animation-name:leftIn;animation-duration:0.25s";
+            },230);
         }
     })
 })

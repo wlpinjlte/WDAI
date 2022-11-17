@@ -42,6 +42,7 @@ header{
     text-align: center;
     border:1px solid white;
     line-height: 5vh;
+    transition: 0.2s;
 }
 
 #login>a:nth-child(2){
@@ -64,7 +65,7 @@ a{
 
 nav{
     display: flex;
-    width: 30%;
+    width: 40%;
     align-items:stretch;
 }
 
@@ -77,6 +78,7 @@ nav>a{
     height:10vh;
     line-height: 9.5vh;
     font-family: sans-serif;
+    transition: 0.5s;
 }
 
 .strzalka::after{
@@ -86,6 +88,7 @@ nav>a{
 
 nav>a:hover{
     background-color: rgb(10, 94, 150);
+    letter-spacing: 5px;
 }
 
 .list{
@@ -112,6 +115,7 @@ nav>a:nth-child(3):hover .list{
     padding-left: 10%;
     display: flex;
     justify-content: space-between;
+    letter-spacing:0;
 }
 
 .link:hover::after{
@@ -121,13 +125,23 @@ nav>a:nth-child(3):hover .list{
 }
 
 .list::before{
-    content:''; /* Required to display content */
-    position: absolute; /* Sets the position absolute to the top div */
-    top:-9.7px;
+    content:''; 
+    position: absolute; 
+    top:-9.5px;
     left:15%;
     width: 0;
     height: 0;
-    border-bottom: solid 10px rgb(255, 255, 255); /* Creates the arrow pointing up, to change to a notch instead user border-top */
-    border-left: solid 10px transparent; /* Creates triangle effect */
-    border-right: solid 10px transparent; /* Creates triangle effect */
+    border-bottom: solid 10px rgb(255, 255, 255);
+    border-left: solid 10px transparent; 
+    border-right: solid 10px transparent; 
+}
+#login>a:nth-child(1):hover{
+    border-color: #61b4e3;
+    color:#61b4e3;
+    background-color: white;
+}
+#login>a:nth-child(2):hover{
+    border-color: white;
+    color:white;
+    background-color: #61b4e3;
 }
