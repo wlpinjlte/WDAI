@@ -10,11 +10,11 @@
     <script src="https://kit.fontawesome.com/338fcf44c3.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <div id="container"></div>
     <form action="#">
-        <input type="text" required pattern="[A-Z]{1}[a-z]+[ ]{1}[A-Z]{1}[a-z]+" id="name"><label>IMIE I NAZWISKO</label>
-        <input type="text" required pattern="[0-9]{9}." id="phone"><label>TELEFON</label>
+        <input type="text" required pattern="\p{Lu}{1}\p{Ll}+[ ]{1}\p{Lu}{1}\p{Ll}+|\p{Lu}{1}\p{Ll}+[ ]{1}\p{Lu}{1}\p{Ll}+[-]{1}\p{Lu}{1}\p{Ll}+" id="name"><label>IMIE I NAZWISKO</label>
+        <input type="text" required pattern="([ ]*\d[ ]*){9}|\+([ ]*\d[ ]*){12}" id="phone"><label>TELEFON</label>
         <button id="addelement">Dodaj</button>
     </form>
-    <div id="container"></div>
 </body>
 </html>

@@ -1,16 +1,14 @@
 let area=document.querySelector("#area");
 let body=document.querySelector("body");
-let rect = area.getBoundingClientRect();
+// let rect = area.getBoundingClientRect();
 let last=document.createElement("p");
-console.log(rect.right);
-ballon.style.top=rect.top+"px";
-ballon.style.left=rect.left+"px";
 
 area.addEventListener("click",(event)=>{
     last.remove();
+    let rect = area.getBoundingClientRect();
     let ballon=document.querySelector("#ballon");
-    ballon.style="top:"+(event.clientY-25)+"px;"+"left:"+(event.clientX-25)+"px;";
-    // console.log(event);
+    ballon.style="top:"+(event.clientY-25-rect.top)+"px;"+"left:"+(event.clientX-25-rect.left)+"px;";
+    console.log(event);
     event.stopPropagation();
 },true);
 

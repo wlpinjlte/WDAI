@@ -82,15 +82,23 @@ input.addEventListener("keyup",()=>{
     check(input);
 })
 
+let alrt=document.createElement("div");
+alrt.style.color="red";
+alrt.innerText="Hasła się róźnią";
+alrt.style.fontFamily="sans-serif";
+alrt.style.margin.top="1rem";
+
 document.addEventListener("keydown",(event)=>{
     if(event.key=="Enter"){
-        if(labels[0].children[0].value==labels[1].children[0].value&&check(labels[0].children[0])){
+        if(labels[0].children[0].value==labels[1].children[0].value){
             alert("hasła się zgadzaja i spelniają kryteria");
-        }else if(labels[0].children[0].value==labels[1].children[0].value){
-            alert("hasła się zgadzaja ale nie spelniaja kryteriow");
+            passwordsContainer.removeChild(alrt);
         }
         else{
             alert("hasla się roznią");
+            // let alrt=document.createElement("div");
+            let passwordsContainer=document.querySelector("#passwordsContainer");
+            passwordsContainer.appendChild(alrt)
         }
     }
 })
