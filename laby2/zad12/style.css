@@ -1,0 +1,136 @@
+body{
+    margin:0;
+    font-family: sans-serif;
+}
+
+#board{
+    position:relative;
+    height: 100vh;
+    min-height: 850px;
+    background-image: url("image/board-bg.jpg");
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.zombie{
+    background-image: url("image/walkingdead.png");
+    width: 200px;
+    height: 312px;
+    position: absolute;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    margin-left:5%;
+    margin-right: 5%;
+    flex-direction: row;
+    color:white;
+    position: fixed;
+    width: 90%;
+    top:0;
+    display: none;
+}
+
+h1,button{
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none; 
+}
+
+header>h1{
+    font-size: 3.5rem;
+    pointer-events: none;
+}
+
+#cursor{
+    background-color: red;
+    height: 0.8rem;
+    width: 0.8rem;
+    border-radius: 50%;
+    z-index: 2;
+    position: absolute;
+    pointer-events: none;
+    display: none;
+}
+
+#cursor::after{
+    content: "";
+    border: 0.4rem solid rgba(255, 255, 255, 0.626);
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+    left:-2rem;
+    top:-2rem;
+    position: absolute;
+}
+
+.screenDisplay{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 70%;
+    height: 40%;
+    background-color: rgba(89, 3, 89, 0.659);
+    border: 1px solid black;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.screenDisplay h1{
+    text-align: center;
+    color:white;
+    font-size: 2.5rem;
+}
+
+#startGame>input{
+    width: 70%;
+    height: 10%;
+}
+
+#gameOver>h1:nth-child(2){
+    margin: 0;
+    font-size: 2rem;
+}
+#gameOver>h1:nth-child(1){
+    margin-bottom: 0;
+    color:red;
+    font-size: 3rem;
+}
+#gameOver{
+    display: none;
+    height: 75%;
+}
+
+#lederboard>h1{
+    margin:0;
+}
+
+#lederboard{
+    height: fit-content;
+}
+
+#lederboard>div{
+    font-size: 2rem;
+    color:white;
+    margin-top: 1%;
+}
+
+#lederboard>div>span{
+    font-weight: bold;
+}
+
+#gameOver>button{
+    height: 15%;
+}
+
+.gameButton{
+    width: 50%;
+    height: 25%;
+    border-radius: 10px;
+    background-color: rgb(18, 177, 18);
+    color:white;
+    font-size: 2rem;
+}
