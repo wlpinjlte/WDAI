@@ -1,0 +1,9 @@
+{
+  "data": {
+    "Bmw": {"models":["e36","m2","m4","X1", "X3", "X4", "X5" , "X6"],"colors":["red","white","yellow","orage","green"]},
+    "Porsche": {"models":["718","911","Cayenne","Macan", "Panamera", "Taycan"],"colors":["grey","aqua","yellow","orage","black"]},
+    "Mercedes": {"models":["AMG GT","Citan","CLA","GLC", "Maybach", "Vito"],"colors":["wheat","azure","yellow","aquamarine","black"]},
+    "Tesla":{"models":["Y","X","S","XS"],"colors":["grey","aqua","yellow","wheat","salmon"]},
+    "Ford":{"models":["PUMA","FIESTA","MUSTANG","EXPLORER","RANGER"],"colors":["bisque","seagreen","yellow","gold","salmon"]}
+  }
+}

@@ -1,5 +1,5 @@
 const api_url = "https://restcountries.com/v3.1/all";
-
+let subregionDivArray=[];
 async function getapi() {
     try {
         const response = await fetch(api_url)
@@ -9,6 +9,7 @@ async function getapi() {
         console.error(err);
     }
 }
+
 let subregionPopulation=(array)=>{
     let populationToReturn=0;
     array.forEach(region=>{
@@ -16,12 +17,68 @@ let subregionPopulation=(array)=>{
     });
     return populationToReturn;
 }
-let subregionarea=(array)=>{
+let subregionArea=(array)=>{
     let areaToReturn=0;
     array.forEach(region=>{
         areaToReturn+=region.area;
     });
     return areaToReturn;
+}
+function loadRegionsToSubregions(regionContainer,regionArray){
+    regionArray.forEach(region=>{
+        regionContainer.innerHTML+=`
+        <div class="region">
+            <p>${region.name}</p>
+            <img src="${region.flag}">
+            <p>${region.population}</p>
+            <p>${region.area}</p>
+        </div>`;
+    })
+}
+
+function loadSubregions(subregion,mapForSubregions){
+    let subregionContainer=document.querySelector("#subregions-container");
+    let subregionDiv=document.createElement("div");
+    subregionDivArray.push(subregionDiv);
+    subregionDiv.classList.add("subregion");
+    subregionDiv.innerHTML+=`
+    <div class="data">
+        <h1>${subregion}</h1>
+        <h1>${subregionArea(mapForSubregions.get(subregion))}</h1>
+        <h1>${subregionPopulation(mapForSubregions.get(subregion))}</h1>
+    </div>
+    <div class="region-container"></div>`;
+    let regionContainer=subregionDiv.querySelector(".region-container");
+    let openn=false;
+    subregionDiv.querySelector(".data").addEventListener("click",()=>{
+        console.log(1);
+        if(openn){
+            regionContainer.style.display="none";
+            
+        }else{
+            regionContainer.style.display="flex";
+        }
+        openn=!openn;
+    })
+    loadRegionsToSubregions(regionContainer,mapForSubregions.get(subregion));
+    subregionContainer.appendChild(subregionDiv);
+}
+let areaComper=(a,b)=>{
+    let areaA=a.querySelector(".data").querySelectorAll("h1")[1].innerText;
+    let areaB=b.querySelector(".data").querySelectorAll("h1")[1].innerText;
+    return areaB-areaA;
+}
+let populationComper=(a,b)=>{
+    let areaA=a.querySelector(".data").querySelectorAll("h1")[2].innerText;
+    let areaB=b.querySelector(".data").querySelectorAll("h1")[2].innerText;
+    return areaB-areaA;
+}
+function reload(){
+    let subregionContainer=document.querySelector("#subregions-container");
+    subregionContainer.innerHTML="";
+    subregionDivArray.forEach(element=>{
+        subregionContainer.appendChild(element);
+    })
 }
 getapi().then(data=>{
     console.log(data);
@@ -33,39 +90,20 @@ getapi().then(data=>{
     subregions.forEach(region=>{
         console.log(region)
         mapForSubregions.set(region,[]);
-        
     });
     data.forEach(element=>{
         mapForSubregions.get(element.subregion).push({
-            name:element.name.official,
+            name:element.name.common,
             population:element.population,
             area:element.area,
             flag:element.flags.png
         })    
     })
     subregions.forEach(region=>{
-        console.log(subregionPopulation(mapForSubregions.get(region)));
-    });
-    console.log();
-    console.log(subregions);
-    console.log(mapForSubregions);
-    subregions.forEach(region=>{
-        console.log(subregionarea(mapForSubregions.get(region)));
-    });
-})
-let subregion=document.querySelector(".data");
-console.log(subregion);
-let region=subregion.parentNode.querySelector("#region-container");
-let openn=true;
-subregion.addEventListener("click",()=>{
-    console.log(1);
-    if(openn){
-        region.style.maxHeight="0px";
-        
-    }else{
-        region.style.maxHeight="200px";
-    }
-    openn=!openn;
-    
-    // region.style.display="none";
-})
+        loadSubregions(region,mapForSubregions);
+    })
+    // console.log(subregionDivArray);
+    // subregionDivArray.sort((a,b)=>populationComper(a,b));
+    // console.log(subregionDivArray);
+    // reload();
+});

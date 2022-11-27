@@ -1,0 +1,51 @@
+#container{
+    display: flex;
+    background: rgb(210,155,9);
+    background: linear-gradient(90deg, rgba(210,155,9,1) 41%, rgba(245,209,63,1) 97%);
+    justify-content: space-evenly;
+    height: 100vh;
+    align-items: center;
+    color:white;
+    font-family: sans-serif;
+}
+h2{
+    text-align: center;
+    font-weight: 100;
+}
+li{
+    font-size:2rem;
+    cursor: pointer;
+}
+#finalcar{
+    font-size: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+div{
+    background: rgba(255, 255, 255, 0.37);
+    border-radius: 10px;
+    padding: 1rem;
+}
+button{
+    position: absolute;
+    top:80%;
+    font-size: 2rem;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.329);
+    border-radius: 10px;
+    padding: 1rem;
+    border-color: antiquewhite;
+}
+ul{
+    list-style-type: none;
+}
+#colors{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: relative;
+    margin-left:0;
+    padding: 0;
+    justify-content: center;
+}
