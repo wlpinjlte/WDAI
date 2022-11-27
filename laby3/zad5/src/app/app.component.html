@@ -1,39 +1,33 @@
 <div id="container">
-  <div id="carName" *ngIf="!showFinalPosition">
-    <h1>{{titleTextName}}</h1>
-    <h2 *ngIf="!showName">
-      Your Choose:<span style="font-weight: bold;">{{name}}</span>
-    </h2>
-    <ul *ngIf="showName">
-      <li *ngFor="let car of carName" (click)="carNameChoose(car)">
-        {{car}}
-      </li>
-    </ul>
+  <div id="content">
+    <div id="carName">
+      <h1>Choose Car Name</h1>
+      <!-- <h2 *ngIf="!showName">
+        Your Choose:<span style="font-weight: bold;">{{name}}</span>
+      </h2> -->
+      <select [(ngModel)]='name' (ngModelChange)="carNameChoose()">
+        <option *ngFor="let car of carName">
+          {{car}}
+        </option>
+      </select>
+    </div>
+    <div id="carModel">
+      <h1>Choose Car Model</h1>
+      <select [(ngModel)]='model' (ngModelChange)="carModelChoose()" *ngIf="showModel">
+        <option *ngFor="let modele of carModel">
+          {{modele}}
+        </option>
+      </select>
+    </div>
+    <div id="carColor">
+      <h1>Choose Car Color</h1>
+      <ul *ngIf="showColor" id="colors">
+        <li *ngFor="let color of carColor" (click)="carColorChoose(color)">
+          <div style="height:1rem;width: 1rem;" [ngStyle]="{'background-color':color}"></div>
+        </li>
+      </ul>
+    </div>
   </div>
-  <div id="carModel" [hidden]="!showModel&&!showColor">
-    <h1>{{titleTextModel}}</h1>
-    <h2 *ngIf="!showModel">
-      Your Choose:<span style="font-weight: bold;">{{model}}</span>
-    </h2>
-    <ul *ngIf="showModel">
-      <li *ngFor="let model of carModel" (click)="carModelChoose(model)">
-        {{model}}
-      </li>
-    </ul>
-  </div>
-  <div id="carColor" [hidden]="!showColor">
-    <h1>{{titleTextColor}}</h1>
-    <h2 *ngIf="!showColor">
-      Your Choose:<span style="font-weight: bold;">{{color}}</span>
-    </h2>
-    <ul *ngIf="showColor" id="colors">
-      <li *ngFor="let color of carColor" (click)="carColorChoose(color)">
-        <div style="height:1rem;width: 1rem;" [ngStyle]="{'background-color':color}"></div>
-      </li>
-    </ul>
-  </div>
-  <div id="finalcar" *ngIf="showFinalPosition">
-    Your brand:<span style="font-weight: bold;">{{name}}</span>  Your model:<span style="font-weight: bold;">{{model}}</span>  Your Color:<div style="height:1rem;width: 1rem;" [ngStyle]="{'background-color':color}"></div>
-  </div>
-  <button (click)="reset()">RESTART</button>
+  <div id="finalcar" *ngIf="showFinalPosition">Your brand:<span style="font-weight: bold;">{{name}}</span>  Your model:<span style="font-weight: bold;">{{model}}</span>  Your Color:<div style="height:1rem;width: 1rem;" [ngStyle]="{'background-color':color}"></div>
+</div>
 </div>

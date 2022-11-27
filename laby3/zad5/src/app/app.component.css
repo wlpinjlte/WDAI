@@ -3,6 +3,7 @@
     background: rgb(210,155,9);
     background: linear-gradient(90deg, rgba(210,155,9,1) 41%, rgba(245,209,63,1) 97%);
     justify-content: space-evenly;
+    flex-direction: column;
     height: 100vh;
     align-items: center;
     color:white;
@@ -48,4 +49,24 @@ ul{
     margin-left:0;
     padding: 0;
     justify-content: center;
+}
+#content{
+    display: flex;
+    justify-content: space-evenly;
+    width: 90%;
+}
+select{
+    width: 100%;
+    justify-content: center;
+    background-color: rgb(22, 158, 221);
+    border: 0;
+    height: 3rem;
+    font-size: 2rem;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+}
+select>option{
+    font-size: 2rem;
+    color:white
 }

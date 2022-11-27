@@ -1,0 +1,67 @@
+#container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 2px solid black;
+    font-family: sans-serif;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+#content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 85%;
+    padding: 2rem;
+    box-shadow: 0 0 5px rgb(124, 118, 118);
+    margin-bottom: 2rem;
+    border-radius: 20px;
+}
+#topicToChoose{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 85%;
+}
+.topic{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 27%;
+    height: 18rem;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgb(124, 118, 118);
+    padding: 1rem;
+    box-sizing: border-box;
+}
+.topic>button{
+    width: 90%;
+    align-self: center;
+    height: 25%;
+    border-radius: 30px;
+    color: white;
+    background-color: rgb(200, 0, 86);
+    border: 0;
+    font-size: 1.2rem;
+    box-sizing: border-box;
+    padding: 0.5rem;
+}
+@media only screen and (max-width: 1000px) {
+    #container {
+      width: 100%;
+    }
+}
+@media only screen and (min-width:1001px) and (max-width: 1200px) {
+    #container {
+      width: 85%;
+    }
+}
+@media only screen and (max-width: 660px) {
+    #topicToChoose{
+        width: 100%;
+    }
+}

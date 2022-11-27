@@ -17,8 +17,7 @@ body{
     position: relative;
 }
 
-.subregion::before{
-    content: "⮞";
+.arrow{
     position: absolute;
     left:2%;
     top:0.5rem;
@@ -82,7 +81,24 @@ main{
 .region>*{
     width: 20%;
 }
-#subregions-container div:first-child::before{
-    content: '';
-    position: absolute;
+
+footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+.number{
+    height: 3rem;
+    width: 3rem;
+    background-color: rgb(218, 225, 230);
+    font-size: 2rem;
+    text-align: center;
+    line-height:3rem;
+    border-radius: 10px;
+    margin-left: 2rem;
+}
+.currPageDown{
+    background-color:rgb(112, 131, 145)
 }

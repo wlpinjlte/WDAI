@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'zad6';
+  name:string="";
+  public Clicked(topic:string){
+    this.name=topic;
+  }
 }

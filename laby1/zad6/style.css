@@ -101,7 +101,13 @@ body{
     z-index:2;
     height: 50px;
 }
-
+#mobile-menu>a{
+    transition: 0.5s;
+}
+#mobile-menu>a:hover{
+    letter-spacing: 5px;
+    color: azure;
+}
 @media screen and (max-width: 800px) {
     #pc-menu{
         display: none;
