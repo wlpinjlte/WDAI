@@ -9,6 +9,7 @@ export class MainComponent {
   name: string = '';
   lastname:String='';
   title:String="";
+  tylko_wewnatrz: any;
   constructor(private roter:Router){}
   windowLocation=this.roter.url;
 }

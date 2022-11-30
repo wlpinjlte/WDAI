@@ -1,5 +1,10 @@
-<div>
+<div id="container" [ngStyle]="{'background-color': getColor()}" [ngClass]="{'cheapest':highlight==1,'mostExpensive':highlight==2}">
     <p>{{object.title}}</p>
     <p>{{object.Contry}}</p>
+    <div id="buttonsSection">
+        <button (click)="substrackButton()"*ngIf="currPlace!=0">+</button>
+        <p>{{currPlace}}</p>
+        <button (click)="addButton()">-</button>
+    </div>
 </div>
 
