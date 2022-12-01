@@ -1,4 +1,4 @@
-import { Component, Input,OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 
 export interface tripData{
   title:string;
@@ -20,20 +20,28 @@ export interface tripData{
 export class TripComponent implements OnInit{
   @Input()object!: tripData;
   @Input()highlight!: number;
+  @Output() avaible = new EventEmitter<boolean>();
+  @Output() delete=new EventEmitter();
   currPlace!: number;
+
   ngOnInit() {
     this.currPlace=this.object.maxPlace;
     console.log(this.highlight);
   }
+
   public addButton(): void{
     this.currPlace=Math.min(this.currPlace+1,this.object.maxPlace);
+    this.avabileEmiter();
     console.log(this.currPlace);
   }
+
   public substrackButton(): void{
     this.currPlace=Math.max(this.currPlace-1,0);
+    this.avabileEmiter();
     console.log(this.currPlace);
   }
-  public getColor():string{
+
+  public getStockColor():string{
     if(this.currPlace==0){
       return "red";
     }
@@ -41,5 +49,22 @@ export class TripComponent implements OnInit{
       return "orange";
     }
     return "white";
+  }
+
+  public getPColor():string{
+    if(this.object.maxPlace-this.currPlace>=10){
+      return "red"
+    }
+    return "green";
+  }
+  public avabileEmiter(){
+    if(this.currPlace==0){
+      this.avaible.emit(false);
+    }else{
+      this.avaible.emit(true);
+    }
+  }
+  public deleteComponet(){
+    this.delete.emit();
   }
 }

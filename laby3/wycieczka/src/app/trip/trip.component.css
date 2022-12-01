@@ -3,6 +3,8 @@
     box-shadow: 0 0 10px black;
     border-radius: 10px;
     margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
 }
 #buttonsSection{
     display: flex;
@@ -14,4 +16,7 @@
 }
 .mostExpensive{
     border: 5px solid green;
+}
+#container>button{
+    align-self: center;
 }

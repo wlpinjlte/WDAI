@@ -9,14 +9,12 @@ export class TripListComponent {
   array=data;
   highlighted: number[]=[];
   avaible:boolean[]=[];
+
   public highlightedUpdate(){
     this.highlighted=[]
     let min=this.array.filter(a=>this.avaible[this.array.indexOf(a)]==true).map(a=>a.unitPrice).reduce((a,b)=>Math.min(a,b));
     let max=this.array.filter(a=>this.avaible[this.array.indexOf(a)]==true).map(a=>a.unitPrice).reduce((a,b)=>Math.max(a,b));
-    for(let a of this.array){
-      if(this.avaible[this.array.indexOf(a)]==false){
-        continue
-      }
+    this.array.forEach(a=>{
       if(a.unitPrice==min){
         this.highlighted.push(1)
       }
@@ -26,9 +24,10 @@ export class TripListComponent {
       else{
         this.highlighted.push(0);
       }
-    }
+    })
     console.log(2);
   }
+
   constructor(){
     this.array.forEach(a=>{
       if(a.maxPlace>0){
@@ -40,8 +39,8 @@ export class TripListComponent {
     this.highlightedUpdate();
     console.log(this.highlighted)
   }
-  public remove(object:any):void{
-    const index = this.array.indexOf(object, 0);
+
+  public deleteComponet(index:number):void{
     if (index > -1) {
       this.array.splice(index, 1);
       this.avaible.splice(index,1);
@@ -52,5 +51,12 @@ export class TripListComponent {
       }
     }
     console.log(this.highlighted);
+  }
+
+  public avaibleChange(i:number,avaibleToChange:boolean){
+    if(this.avaible[i]!=avaibleToChange){
+      this.avaible[i]=!this.avaible[i];
+      this.highlightedUpdate();
+    }
   }
 }

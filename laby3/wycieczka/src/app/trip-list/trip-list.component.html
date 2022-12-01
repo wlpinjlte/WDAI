@@ -1,3 +1,3 @@
 <div id="container">
-    <app-trip  *ngFor="name of array,index as i" [highlight]="highlighted[i]" [object]="array[i]"></app-trip>
+    <app-trip  *ngFor="name of array,index as i" [highlight]="highlighted[i]" [object]="array[i]" (avaible)="avaibleChange(i,$event)" (delete)="deleteComponet(i)"></app-trip>
 </div>

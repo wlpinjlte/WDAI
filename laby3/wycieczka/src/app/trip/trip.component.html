@@ -1,10 +1,13 @@
-<div id="container" [ngStyle]="{'background-color': getColor()}" [ngClass]="{'cheapest':highlight==1,'mostExpensive':highlight==2}">
-    <p>{{object.title}}</p>
-    <p>{{object.Contry}}</p>
+<div id="container" [ngStyle]="{'background-color': getStockColor()}" [ngClass]="{'cheapest':highlight==1,'mostExpensive':highlight==2}">
+    <p>{{object.title| uppercase }}</p>
+    <p>{{object.Contry| uppercase }}</p>
+    <p>{{object.unitPrice}} $</p>
+    <p [ngStyle]="{'background-color':getPColor()}">{{object.maxPlace-currPlace}}</p>
     <div id="buttonsSection">
         <button (click)="substrackButton()"*ngIf="currPlace!=0">+</button>
         <p>{{currPlace}}</p>
         <button (click)="addButton()">-</button>
     </div>
+    <button (click)="deleteComponet()">delete</button>
 </div>
 
