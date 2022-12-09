@@ -1,0 +1,21 @@
+#container{
+    display: flex;
+}
+#form{
+    padding:2rem;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+button{
+    margin-top: 1rem;
+}
+app-trip{
+    width: 35%;
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 100%;
+    align-self: stretch;
+}

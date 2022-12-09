@@ -5,16 +5,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TripListComponent } from './trip-list/trip-list.component';
 import { TripComponent } from './trip/trip.component';
-
+import { TripFormComponent } from './trip-form/trip-form.component';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
     TripListComponent,
-    TripComponent
+    TripComponent,
+    TripFormComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

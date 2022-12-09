@@ -1,13 +1,14 @@
-<div id="container" [ngStyle]="{'background-color': getStockColor()}" [ngClass]="{'cheapest':highlight==1,'mostExpensive':highlight==2}">
+<div id="container" [ngStyle]="{'background-color': getStockColor()}" [ngClass]="{'cheapest':tripService.highlightedArray()[index]==1||tripService.highlightedArray()[index]==-1,'mostExpensive': tripService.highlightedArray()[index]==2,'normal':tripService.highlightedArray()[index]==0&&currPlace>3,'orangeBorder':tripService.highlightedArray()[index]==0&&currPlace<=3}">
+    <img src="https://lachmanski.pl/wp-content/uploads/2017/09/man-4677025_960_720-960x450.jpg">
     <p>{{object.title| uppercase }}</p>
     <p>{{object.Contry| uppercase }}</p>
     <p>{{object.unitPrice}} $</p>
-    <p [ngStyle]="{'background-color':getPColor()}">{{object.maxPlace-currPlace}}</p>
+    <p [ngStyle]="{'background-color':getPColor(),'color':'white'}">{{object.maxPlace-currPlace}}</p>
     <div id="buttonsSection">
-        <button (click)="substrackButton()"*ngIf="currPlace!=0">+</button>
+        <button (click)="substrackButton()"[ngStyle]="{'transform':currPlace==0? 'scale(0)':'scale(100%)'}">+</button>
         <p>{{currPlace}}</p>
         <button (click)="addButton()">-</button>
     </div>
-    <button (click)="deleteComponet()">delete</button>
+    <button (click)="deleteComponet()" id="deleteButton">X</button>
 </div>
 

@@ -5,6 +5,7 @@
     margin-top: 2rem;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 #buttonsSection{
     display: flex;
@@ -17,6 +18,26 @@
 .mostExpensive{
     border: 5px solid green;
 }
+.normal{
+    border:5px solid white;
+}
+.orangeBorder{
+    border: 5px solid orange;
+}
 #container>button{
     align-self: center;
+}
+img{
+    align-self: center;
+    border-radius: 50%;
+    width: 100%;
+}
+#deleteButton{
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    right:3%;
+    top:3%;
+    font-size: 1.3rem;
+    font-weight: bold;
 }

@@ -3,3 +3,23 @@
     justify-content: space-evenly;
     flex-wrap: wrap;
 }
+app-trip{
+    width: 18%;
+}
+@media screen and (max-width: 1150px) {
+    app-trip{
+        width:22%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    app-trip{
+        width:40%;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    app-trip{
+        width:auto;
+    }
+}

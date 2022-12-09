@@ -1,5 +1,6 @@
+import { trigger } from '@angular/animations';
 import { Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
-
+import {TripDataService} from '../trip-data-service/trip-data.service';
 export interface tripData{
   title:string;
   Contry:string;
@@ -18,17 +19,15 @@ export interface tripData{
 
 
 export class TripComponent implements OnInit{
-  @Input()object!: tripData;
-  @Input()highlight!: number;
-  @Output() avaible = new EventEmitter<boolean>();
-  @Output() delete=new EventEmitter();
+  @Input()object: tripData={title:"",Contry:"",start:'',end:'',unitPrice:0,maxPlace:0,img:'',description:''};
+  @Input()index: number=-1;
   currPlace!: number;
+  constructor(public tripService:TripDataService){}
 
   ngOnInit() {
     this.currPlace=this.object.maxPlace;
-    console.log(this.highlight);
   }
-
+  
   public addButton(): void{
     this.currPlace=Math.min(this.currPlace+1,this.object.maxPlace);
     this.avabileEmiter();
@@ -57,14 +56,17 @@ export class TripComponent implements OnInit{
     }
     return "green";
   }
+  
   public avabileEmiter(){
     if(this.currPlace==0){
-      this.avaible.emit(false);
+      this.tripService.avaibleChange(this.index,false);
     }else{
-      this.avaible.emit(true);
+      this.tripService.avaibleChange(this.index,true);
     }
   }
+
   public deleteComponet(){
-    this.delete.emit();
+    console.log(1);
+    this.tripService.deleteComponet(this.index);
   }
 }
