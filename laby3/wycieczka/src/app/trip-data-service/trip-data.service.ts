@@ -117,4 +117,15 @@ export class TripDataService {
     }
     console.log(this.reservationDetail);
   }
+
+  public addToArray(trip:any){
+    this.array.push(trip);
+    if(trip.maxPlace>0){
+      this.avaible.push(true);
+    }else{
+      this.avaible.push(false);
+    }
+    
+    this.highlightedUpdate();
+  }
 }

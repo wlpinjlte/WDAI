@@ -7,7 +7,8 @@ let addElement=document.querySelector("#addelement");
 let container=document.querySelector("#container");
 let form=document.querySelector("form");
 let i=0;
-addElement.addEventListener('click',()=>{
+addElement.addEventListener('click',(event)=>{
+    event.preventDefault();
     let nameInput=document.querySelector("#name");
     let phoneInput=document.querySelector("#phone");
     if(nameInput.checkValidity()&&phoneInput.checkValidity()){

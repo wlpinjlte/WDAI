@@ -60,7 +60,8 @@ hr{
 img{
     align-self: center;
     border-radius: 50%;
-    width: 100%;
+    width: 15rem;
+    height: 10rem;
 }
 
 #deleteButton{

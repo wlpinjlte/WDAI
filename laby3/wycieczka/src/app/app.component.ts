@@ -17,4 +17,7 @@ export class AppComponent {
   public openAdd():void{
     this.addOpen=!this.addOpen;
   }
+  public closeForm(){
+    this.addOpen=false;
+  }
 }

@@ -1,7 +1,8 @@
-import { NgModule,Component,OnInit } from '@angular/core';
+import { NgModule,Component,OnInit,EventEmitter, Output} from '@angular/core';
 import { Validator,ReactiveFormsModule,FormControl, FormGroup, Validators } from '@angular/forms';
 import { BrowserModule } from "@angular/platform-browser";
 import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
+import { TripDataService } from '../trip-data-service/trip-data.service';
 @Component({
   selector: 'app-trip-form',
   templateUrl: './trip-form.component.html',
@@ -9,7 +10,8 @@ import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 })
 
 export class TripFormComponent implements OnInit{
-
+  @Output() close=new EventEmitter<boolean>();
+  correctDate=false;
   myform!:FormGroup;
   title!:FormControl;
   Contry!:FormControl;
@@ -21,7 +23,7 @@ export class TripFormComponent implements OnInit{
   description!:FormControl;
   now=new Date()
   today:string = this.now.getFullYear()+'-'+this.now.getDate()+'-'+this.now.getMonth();
-  constructor() {}
+  constructor(public tripData:TripDataService) {}
 
   ngOnInit(): void {
     this.title= new FormControl('',[
@@ -65,9 +67,11 @@ export class TripFormComponent implements OnInit{
   }
   public onSubmit(){
       if(this.myform.valid){
-        console.log('siema')
+        this.tripData.addToArray(this.myform.value);
+        this.close.emit(true);
       }else{
-        console.log("nie siema")
+        this.correctDate=true;
+        console.log("nie siema");
       }
   }
 }

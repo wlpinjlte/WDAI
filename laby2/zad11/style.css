@@ -102,3 +102,34 @@ footer{
 .currPageDown{
     background-color:rgb(112, 131, 145)
 }
+
+@media screen and (min-width:651px) and (max-width: 800px){
+    .region>p{
+        font-size: 1.7rem;
+    }
+    h1{
+        font-size: 1.7rem;
+    }
+}
+@media screen and (min-width:451px) and (max-width: 650px){
+    .region>p{
+        font-size: 1.2rem;
+    }
+    .arrow{
+        font-size: 1.5rem;
+    }
+    h1{
+        font-size: 1.2rem;
+    }
+}
+@media screen and (max-width: 450px){
+    .region>p{
+        font-size: 1rem;
+    }
+    .arrow{
+        font-size: 1.3rem;
+    }
+    h1{
+        font-size: 1rem;
+    }
+}

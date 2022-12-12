@@ -20,7 +20,7 @@ label{
 }
 
 input:focus{
-    border: 3px solid rgb(6, 212, 157);
+    border: 3px solid rgb(30, 98, 224)!important;
 }
 
 label>i{

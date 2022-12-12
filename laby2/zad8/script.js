@@ -82,23 +82,44 @@ input.addEventListener("keyup",()=>{
     check(input);
 })
 
-let alrt=document.createElement("div");
-alrt.style.color="red";
-alrt.innerText="Hasła się róźnią";
-alrt.style.fontFamily="sans-serif";
-alrt.style.margin.top="1rem";
+let alrt1=document.createElement("div");
+alrt1.style.color="red";
+alrt1.innerText="Hasła się róźnią";
+alrt1.style.fontFamily="sans-serif";
+alrt1.style.margin.top="1rem";
+let alrt2=document.createElement("div");
+alrt2.style.color="red";
+alrt2.innerText="Hasło nie spełnia kryteriów";
+alrt2.style.fontFamily="sans-serif";
+alrt2.style.margin.top="1rem";
 
 document.addEventListener("keydown",(event)=>{
+    let inputs=document.querySelectorAll("input");
+    let passwordsContainer=document.querySelector("#passwordsContainer");
+    
     if(event.key=="Enter"){
-        if(labels[0].children[0].value==labels[1].children[0].value){
-            alert("hasła się zgadzaja i spelniają kryteria");
-            passwordsContainer.removeChild(alrt);
+        try{
+            passwordsContainer.removeChild(alrt2);
+        }catch{}
+        try{
+            passwordsContainer.removeChild(alrt1);
+        }catch{}
+        if(labels[0].children[0].value==labels[1].children[0].value&&check(inputs[0])){
+            inputs.forEach(a=>{
+                a.style.border="3px solid green";
+            })
         }
         else{
-            alert("hasla się roznią");
             // let alrt=document.createElement("div");
-            let passwordsContainer=document.querySelector("#passwordsContainer");
-            passwordsContainer.appendChild(alrt)
+            inputs.forEach(a=>{
+                a.style.border="3px solid red";
+            })
+            if(labels[0].children[0].value!=labels[1].children[0].value){
+                passwordsContainer.appendChild(alrt1)
+            }
+            if(!check(inputs[0])){
+                passwordsContainer.appendChild(alrt2)
+            }
         }
     }
 })
