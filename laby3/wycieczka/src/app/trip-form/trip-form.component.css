@@ -1,21 +1,26 @@
 #container{
     display: flex;
+    justify-content: center;
 }
-#form{
+form{
     padding:2rem;
-    background-color: white;
+    background-color: rgb(255,250,233);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     position: relative;
+    
 }
 button{
     margin-top: 1rem;
 }
-app-trip{
+/* app-trip{
     width: 35%;
     margin-top: auto;
     margin-bottom: auto;
     height: 100%;
     align-self: stretch;
+} */
+input{
+    width: 100%;
 }

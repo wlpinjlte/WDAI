@@ -1,2 +1,16 @@
-<app-trip-list></app-trip-list>
-<app-trip-form></app-trip-form>
+<header>
+    <select [(ngModel)]="tripData.currency">
+        <option value="$">Dolar $</option>
+        <option value="€">Euro €</option>
+        <option value="zł">PLN zł</option>
+    </select>
+    <button (click)="openAdd()">+</button>
+    <div id="koszyk" (click)="openCart()">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <div id="reservationNumber">{{tripData.allOfReservation}}</div>
+    </div>
+</header>
+<div id="background" *ngIf="isOpen" (click)="openCart()"></div>
+<app-trip-list *ngIf="!addOpen"></app-trip-list>
+<app-trip-form *ngIf="addOpen"></app-trip-form>
+<app-cart [ngStyle]="{'transform': isOpen? 'translateX(0)':'translateX(20rem)'}"></app-cart>

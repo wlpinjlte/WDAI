@@ -1,0 +1,93 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(7, 101, 189);
+    position: fixed;
+    width: 100%;
+    z-index: 3;
+}
+
+select{
+    padding: 1rem;
+    font-size: 1.5rem;
+    background-color: rgb(7, 101, 189);
+    border: 0;
+    color:white;
+    outline: 0;
+}
+
+option{
+    font-size: 1.5rem;
+    border: 0;
+    background-color: rgb(7, 101, 189);
+}
+
+header>button{
+    width: 3.8rem;
+    height: 3.8rem;
+    align-self: center;
+    font-size: 2rem;
+    color:white;
+    background-color: rgb(7, 101, 189);
+    border: 0;
+}
+
+header>button:hover{
+    background-color: rgba(255, 255, 255, 0.541);
+}
+
+header>div{
+    width: 3.8rem;
+    height: 3.8rem;
+    position: relative;
+    color:white;
+    font-size: 2rem;
+    text-align: center;
+    line-height: 3.8rem;
+}
+
+header>div:hover{
+    background-color: rgba(255, 255, 255, 0.541);
+}
+
+#reservationNumber{
+    background-color: rgb(50, 248, 0);
+    border-radius: 50%;
+    font-size: 1rem;
+    height: 1.5rem;
+    width: 1.5rem;
+    text-align: center;
+    vertical-align: center;
+    line-height: 1.5rem;
+    position: absolute;
+    right:0;
+    top:0;
+    z-index: 1;
+}
+
+#background{
+    background-color: rgba(128, 128, 128, 0.425);
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+}
+
+app-cart{
+    position: fixed;
+    right: 0;
+    width: 20rem;
+    height: 100vh;
+    top:3.8rem;
+    z-index: 2;
+    transition: 0.5s;
+    transform: translateX(0);
+}
+
+app-trip-form{
+    position: relative;
+    top:6rem;
+    /* left:35%; */
+    overflow: hidden;
+    width: 50vw;
+}

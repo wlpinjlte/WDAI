@@ -21,6 +21,7 @@ export interface tripData{
 export class TripComponent implements OnInit{
   @Input()object: tripData={title:"",Contry:"",start:'',end:'',unitPrice:0,maxPlace:0,img:'',description:''};
   @Input()index: number=-1;
+  stars:number=0;
   currPlace!: number;
   constructor(public tripService:TripDataService){}
 
@@ -29,15 +30,21 @@ export class TripComponent implements OnInit{
   }
   
   public addButton(): void{
-    this.currPlace=Math.min(this.currPlace+1,this.object.maxPlace);
-    this.avabileEmiter();
-    console.log(this.currPlace);
+    if(this.currPlace<this.object.maxPlace){
+      this.currPlace=this.currPlace+1;
+      this.avabileEmiter();
+      console.log(this.currPlace);
+      this.tripService.substractFromMap(this.object.title);
+    }
+    
   }
 
   public substrackButton(): void{
-    this.currPlace=Math.max(this.currPlace-1,0);
-    this.avabileEmiter();
-    console.log(this.currPlace);
+    if(this.currPlace>0){
+      this.currPlace=this.currPlace-1;
+      this.avabileEmiter();
+      this.tripService.addToMap(this.object.title,this.object.unitPrice);
+    }
   }
 
   public getStockColor():string{
@@ -47,11 +54,14 @@ export class TripComponent implements OnInit{
     if(this.currPlace<4){
       return "orange";
     }
-    return "white";
+    return "rgb(255,250,233)";
   }
 
   public getPColor():string{
-    if(this.object.maxPlace-this.currPlace>=10){
+    if(this.currPlace==0){
+      return 'black';
+    }
+    else if(this.object.maxPlace-this.currPlace<10){
       return "red"
     }
     return "green";
@@ -68,5 +78,9 @@ export class TripComponent implements OnInit{
   public deleteComponet(){
     console.log(1);
     this.tripService.deleteComponet(this.index);
+  }
+
+  public starsChange(i:number):void{
+    this.stars=i;
   }
 }

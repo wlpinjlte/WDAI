@@ -1,0 +1,6 @@
+<div id="container">
+    <div *ngFor="let name of tripdata.reservationDetail.entries()">
+        <span style='font-weight: bold'>{{name[1][0]}}</span> X {{name[0]}} {{name[1][0]*name[1][1]*tripdata.multiply()}}{{tripdata.currency}}
+    </div>
+    <div>Do zapłaty:{{this.fullCost()*tripdata.multiply()}}{{tripdata.currency}}</div>
+</div>

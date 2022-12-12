@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import data from '../../assets/json/data.json'
+import data from '../../assets/json/data.json';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,9 @@ export class TripDataService {
   array=data;
   highlighted: number[]=[];
   avaible:boolean[]=[];
+  currency='$';
+  allOfReservation=0; 
+  reservationDetail=new Map();
 
   constructor() {
     this.array.forEach(a=>{
@@ -60,6 +63,11 @@ export class TripDataService {
   public deleteComponet(index:number):void{
     console.log(index);
     if (index > -1) {
+      if(this.reservationDetail.has(this.array[index].title)){
+        console.log(1);
+        this.allOfReservation-=this.reservationDetail.get(this.array[index].title)[0];
+        this.reservationDetail.delete(this.array[index].title);
+      }
       this.array.splice(index, 1);
       this.avaible.splice(index,1);
       if(this.highlighted[index]==1 || this.highlighted[index]==2){
@@ -77,5 +85,36 @@ export class TripDataService {
       this.highlightedUpdate();
       console.log(this.highlighted);
     }
+  }
+
+  public multiply():number{
+    switch(this.currency){
+      case '$':
+        return 1;
+      case '€':
+        return 0.95;
+    }
+    return 4.5;
+  }
+
+  public addToMap(title:string,unitPrice:number):void{
+    if(this.reservationDetail.has(title)){
+      this.reservationDetail.get(title)[0]+=1;
+    }else{
+      this.reservationDetail.set(title,[1,unitPrice]);
+    }
+    this.allOfReservation+=1;
+    console.log(this.reservationDetail);
+  }
+
+  public substractFromMap(title:string):void{
+    if(this.reservationDetail.has(title)){
+      this.reservationDetail.get(title)[0]-=1;
+      if(this.reservationDetail.get(title)[0]==0){
+        this.reservationDetail.delete(title);
+      }
+      this.allOfReservation-=1;
+    }
+    console.log(this.reservationDetail);
   }
 }

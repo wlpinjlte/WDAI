@@ -6,20 +6,23 @@ import { AppComponent } from './app.component';
 import { TripListComponent } from './trip-list/trip-list.component';
 import { TripComponent } from './trip/trip.component';
 import { TripFormComponent } from './trip-form/trip-form.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CartComponent } from './cart/cart.component';
 @NgModule({
   declarations: [
     AppComponent,
     TripListComponent,
     TripComponent,
-    TripFormComponent
+    TripFormComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,TripFormComponent]
 })
 export class AppModule { }
