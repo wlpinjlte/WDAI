@@ -16,7 +16,7 @@ addElement.addEventListener('click',(event)=>{
         <div class="element">
             <span>
                 <p>${nameInput.value}</p>
-                <p>${phoneInput.value}</p>
+                <p>${phoneInput.value.replace(/\s/g, '')}</p>
             </span>
             <button class="deleteButton" onclick="deleteElement(this)"><i class="fa-solid fa-trash-can"></i></button>
         </div>`;
