@@ -1,0 +1,15 @@
+<form>
+    <h2>Title</h2>
+    <input [(ngModel)]="title" name="1">
+    <h2>Description</h2>
+    <textarea [(ngModel)]="description" cols="40" rows="5" name="2"></textarea>
+    <button (click)="sendPost()">wyślij post</button>
+</form>
+<h1 *ngIf="data==null">loading...</h1>
+<div id="container">
+    <div *ngFor="let item of data">
+        <h2>userId:{{item.userId}} and postId:{{item.id}}</h2>
+        <h3>title:{{item.title}}</h3>
+        <p>body:{{item.body}}</p>
+    </div>
+</div>

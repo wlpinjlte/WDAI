@@ -1,0 +1,9 @@
+<h1 *ngIf="data==null" [ngStyle]="{'aling-self':'center'}">loading...</h1>
+<div id="container">
+    <div *ngFor="let item of data" routerLink="/photos/{{item.id}}">
+        <img [src]="item.thumbnailUrl" >
+        <p>title:{{item.title}}</p>
+        <p>id:{{item.id}}</p>
+        <p>albumId:{{item.albumId}}</p>
+    </div>
+</div>
