@@ -11,6 +11,6 @@
     </div>
 </header>
 <div id="background" *ngIf="isOpen" (click)="openCart()"></div>
-<app-trip-list [hidden]="addOpen"></app-trip-list>
+<app-trip-list *ngIf="!addOpen"></app-trip-list>
 <app-trip-form *ngIf="addOpen" (close)="closeForm()"></app-trip-form>
 <app-cart [ngStyle]="{'transform': isOpen? 'translateX(0)':'translateX(20rem)'}"></app-cart>

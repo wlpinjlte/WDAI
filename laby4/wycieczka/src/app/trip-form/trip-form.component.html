@@ -1,0 +1,63 @@
+<div id="container">
+    <form [formGroup]="myform" novalidate (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <h3>Nazwa</h3>
+            <input class="form-control" formControlName="title"[ngClass]="{
+                'is-valid':title.valid && (title.dirty||title.touched),
+                'is-invalid':title.invalid && (title.dirty||title.touched)
+            }">
+        </div>
+        <div class="form-group">
+            <h3>Kraj</h3>
+            <input class="form-control" formControlName="Contry" [ngClass]="{
+                'is-valid':Contry.valid && (Contry.dirty||Contry.touched),
+                'is-invalid':Contry.invalid && (Contry.dirty||Contry.touched)
+            }">
+        </div>
+        <div class="form-group">
+            <h3>Data rozpoczęcia</h3>
+            <input class="form-control" type="date"  formControlName="start" [min]="today" [max]="end.value" [ngClass]="{
+                'is-valid':!start.errors?.['required'] && (start.dirty||start.touched),
+                'is-invalid':start.errors?.['required'] && (start.dirty||start.touched)
+            }">
+        </div>
+        <div class="form-group">
+            <h3>Data zakoniczenia</h3>
+            <p *ngIf="start.errors?.['required']">uzupelnij najpierw date rozpoczęcia</p>
+            <input class="form-control" type="date" formControlName="end" [min]="start.value" *ngIf="!start.errors?.['required']" [ngClass]="{
+                'is-valid':!end.errors?.['required'] && (end.dirty||end.touched),
+                'is-invalid':end.errors?.['required'] && (end.dirty||end.touched)
+            }">
+        </div>
+        <div class="form-group">
+            <h3>Cena[$]</h3>
+            <input class="form-control" formControlName="unitPrice" [ngClass]="{
+                'is-valid':unitPrice.valid && (unitPrice.dirty||unitPrice.touched),
+                'is-invalid':unitPrice.invalid && (unitPrice.dirty||unitPrice.touched)
+            }">
+        </div>
+        <div class="form-group">
+            <h3>Opis</h3>
+            <input class="form-control" formControlName="description" [ngClass]="{
+                'is-valid':!description.errors?.['required'] && (description.dirty||description.touched),
+                'is-invalid':description.errors?.['required'] && (description.dirty||description.touched)
+            }">
+        </div>
+        <div class="form-group">
+            <h3>Zdjecie</h3>
+            <input class="form-control" formControlName="img" [ngClass]="{
+                'is-valid':!img.errors?.['required'] && (img.dirty||img.touched),
+                'is-invalid':img.errors?.['required'] && (img.dirty||img.touched)
+            }">
+        </div>
+        <div class="form-group">
+            <h3>Maksymalna liczba miejsc</h3>
+            <input class="form-control" formControlName="maxPlace" [ngClass]="{
+                'is-valid':maxPlace.valid && (maxPlace.dirty||maxPlace.touched),
+                'is-invalid':maxPlace.invalid && (maxPlace.dirty||maxPlace.touched)
+            }">
+        </div>
+        <p *ngIf="correctDate" [ngStyle]="{'color':'red'}">Popraw dane wprowadzone do formularza</p>
+        <button type="submit" class="btn btn-primary">Dodaj wycieczke</button>
+    </form>
+</div>
