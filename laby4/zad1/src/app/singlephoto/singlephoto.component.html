@@ -1,0 +1,9 @@
+<div>
+    <div id="container">
+        <img [src]="data.url">
+        <h1 *ngIf="data.url==null">loading Photo...</h1>
+        <p>title:{{data.title}}</p>
+        <p>id:{{data.id}}</p>
+        <p>albumId:{{data.albumId}}</p>
+    </div>
+</div>

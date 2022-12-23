@@ -1,0 +1,16 @@
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+    background-color: rgb(36, 164, 187);
+    color:white;
+}
+header>div{
+    font-size: 2rem;
+    padding: 1.5rem;
+    cursor: pointer;
+}
+header>div:hover{
+    background-color: rgb(6, 77, 90);;
+}

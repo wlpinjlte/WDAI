@@ -1,0 +1,13 @@
+div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+}
+#container{
+    background-color: white;
+    padding: 1rem;
+    height: fit-content;
+    border-radius: 10px;
+}
