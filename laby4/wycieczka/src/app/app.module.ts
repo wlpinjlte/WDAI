@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
 import { MainPageComponent } from './main-page/main-page.component';
 import { AgmCoreModule } from '@agm/core';
 import { TripHistoryComponent } from './trip-history/trip-history.component';
+import { SingleTripComponent } from './single-trip/single-trip.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,8 @@ import { TripHistoryComponent } from './trip-history/trip-history.component';
     TripFormComponent,
     CartComponent,
     MainPageComponent,
-    TripHistoryComponent
+    TripHistoryComponent,
+    SingleTripComponent
   ],
   imports: [
     BrowserModule,

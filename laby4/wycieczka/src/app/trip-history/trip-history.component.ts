@@ -8,6 +8,7 @@ import { TripDataService } from '../trip-data-service/trip-data.service';
 export class TripHistoryComponent {
   now=new Date();
   today:string = this.now.getFullYear()+'-'+(this.now.getMonth()+1)+'-'+this.now.getDate();
+  fillter:number=0;
   constructor(public tripData:TripDataService){}
 
   public getTrip(index:string):any{
@@ -32,5 +33,18 @@ export class TripHistoryComponent {
     }else{
       return "gold";
     }
+  }
+
+  public fillterCheck(text:string){
+    if(this.fillter==0){
+      return true;
+    }else if(this.fillter==1 && text=="Wycieczka się odbyła"){
+      return true;
+    }else if(this.fillter==2 && text=="W trakcie"){
+      return true;
+    }else if(this.fillter==3 && text=="Oczekujący"){
+      return true;
+    }
+    return false;
   }
 }

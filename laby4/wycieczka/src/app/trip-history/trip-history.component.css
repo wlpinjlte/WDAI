@@ -6,6 +6,20 @@
     align-items: center;
 }
 
+#container>div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#select{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3498db;
+}
+
 .trip{
     margin-top: 1rem;
     width: 60%;
@@ -31,6 +45,21 @@
 #information>div{
     font-size: 1.2rem;
     padding:0.2rem;
+}
+
+select{
+    padding: 0.5rem;
+    font-size: 1rem;
+    background-color: #3498db;
+    border: 0;
+    color:white;
+    outline: 0;
+}
+
+option{
+    font-size: 1rem;
+    border: 0;
+    background-color: #3498db;
 }
 
 @media only screen and (max-width: 1050px){
