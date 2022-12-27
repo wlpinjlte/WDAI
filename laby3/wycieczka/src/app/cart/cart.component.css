@@ -3,6 +3,7 @@
     flex-direction: column;
     background-color: white;
     height: 100vh;
+    padding:1.5rem;
 }
 #container>div{
     font-size: 1.5rem;

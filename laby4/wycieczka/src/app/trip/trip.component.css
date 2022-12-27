@@ -94,3 +94,7 @@ img{
 i{
     color: gray;
 }
+
+#container>p{
+    height: 8rem;
+}

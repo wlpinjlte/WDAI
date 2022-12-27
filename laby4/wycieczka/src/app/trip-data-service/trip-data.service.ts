@@ -15,7 +15,9 @@ export class TripDataService {
   currency='$';
   allOfReservation=0; 
   reservationDetail=new Map();
+  boughtTrips=new Map();
   dataFireBase:any;
+
   constructor(dataa:AngularFireDatabase) {
     this.dataFireBase=dataa.list('/trips');
     this.trips= dataa.list('/trips').valueChanges();
@@ -37,9 +39,11 @@ export class TripDataService {
       console.log(trip);
     })
   }
+
   reservationDetailMap(){
     return this.reservationDetail;
   }
+
   tripArray(){
     return this.array;
   }
@@ -50,6 +54,10 @@ export class TripDataService {
 
   avaibleArray(){
     return this.avaible;
+  }
+
+  boughtTripsMap(){
+    return this.boughtTrips;
   }
   
   public highlightedUpdate(){
@@ -115,5 +123,25 @@ export class TripDataService {
     let postedreference=this.dataFireBase.push();
     trip['index']=postedreference.getKey();
     postedreference.set(trip);
+  }
+
+  public buyTrip(index:string){
+    if(this.boughtTrips.has(index)){
+      this.boughtTrips.set(index,this.boughtTrips.get(index)+this.reservationDetail.get(index));
+    }else{
+      this.boughtTrips.set(index,this.reservationDetail.get(index));
+    }
+    this.allOfReservation-=this.reservationDetail.get(index);
+    this.array.filter(a=> a.index==index)[0].maxPlace-=this.reservationDetail.get(index);
+    this.reservationDetail.set(index,0);
+    console.log(this.boughtTrips);
+  }
+
+  public buyAll(){
+    for(let trip of this.reservationDetail.entries()){
+      if(trip[1]>0){
+        this.buyTrip(trip[0]);
+      }
+    }
   }
 }

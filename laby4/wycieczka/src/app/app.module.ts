@@ -10,13 +10,18 @@ import { TripFormComponent } from './trip-form/trip-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CartComponent } from './cart/cart.component';
 import { environment } from 'src/environments/environment';
+import { MainPageComponent } from './main-page/main-page.component';
+import { AgmCoreModule } from '@agm/core';
+import { TripHistoryComponent } from './trip-history/trip-history.component';
 @NgModule({
   declarations: [
     AppComponent,
     TripListComponent,
     TripComponent,
     TripFormComponent,
-    CartComponent
+    CartComponent,
+    MainPageComponent,
+    TripHistoryComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +29,10 @@ import { environment } from 'src/environments/environment';
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAQGhfdn1TfXo3Pn2lxNIj5bMK-X14Y8og'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent,TripFormComponent]

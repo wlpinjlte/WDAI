@@ -15,10 +15,20 @@ export class CartComponent {
     })
     return sum;
   }
+
   public getName(index:string):string{
     return this.tripdata.tripArray().filter(a=>a.index==index)[0].title;
   }
+
   public getUnitPrice(index:string):number{
     return this.tripdata.tripArray().filter(a=>a.index==index)[0].unitPrice
+  }
+
+  public buyOne(index:string){
+    this.tripdata.buyTrip(index);
+  }
+  
+  public buyAll(){
+    this.tripdata.buyAll();
   }
 }

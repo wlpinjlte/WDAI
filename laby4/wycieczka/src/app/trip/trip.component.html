@@ -10,7 +10,7 @@
             <div id="rating">
                 <i class="fa-solid fa-star" *ngFor="let i of [1,2,3,4,5]" (click)="starsChange(i)" [ngStyle]="{'color':i<=stars? 'gold':'gray'}"></i>
             </div>
-            <p>{{object.unitPrice*tripService.multiply()}}{{tripService.currency}}</p>
+            <p>{{(object.unitPrice*tripService.multiply()).toFixed(2)}}{{tripService.currency}}</p>
         </div>
         <div id="buttonsSection">
             <button (click)="substrackButton()"[ngStyle]="{'transform':currPlace==0? 'scale(0)':'scale(100%)'}">+</button>

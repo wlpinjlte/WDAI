@@ -1,0 +1,34 @@
+<div id="container">
+    <header>
+        <h1>Wycieczki z nami</h1>
+        <p>Zapraszamy na niezapomniane wyprawy po całym świecie</p>
+    </header>
+    <main>
+        <section id="oferta">
+          <h2>Nasza oferta</h2>
+          <p>Oferujemy wycieczki do najpiękniejszych zakątków świata, takich jak:</p>
+          <ul>
+            <li>Malediwy</li>
+            <li>Tajlandia</li>
+            <li>Meksyk</li>
+            <li>Grecja</li>
+            <li>Chorwacja</li>
+          </ul>
+        </section>
+        <section id="o-nas">
+          <h2>O nas</h2>
+          <p>Jesteśmy firmą z wieloletnim doświadczeniem w organizowaniu wyjazdów. Nasza kadra to profesjonalni przewodnicy, którzy zadbają o każdy szczegół Twojej podróży.</p>
+        </section>
+        <section id="kontakt">
+          <h2>Kontakt</h2>
+          <p>Jeśli masz pytania lub chciałbyś zarezerwować wycieczkę, skontaktuj się z nami:</p>
+          <ul>
+            <li>email: wycieczki@naszafirma.pl</li>
+            <li>telefon: 123-456-789</li>
+          </ul>
+        </section>
+      </main>
+    <agm-map [latitude]="l1" [longitude]="l2" [zoom]='zoom' (mapClick)="clicked($event)">
+        <agm-marker [latitude]="l1" [longitude]="l2" ></agm-marker>
+    </agm-map>
+</div>

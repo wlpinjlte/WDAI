@@ -22,21 +22,35 @@ option{
     background-color: rgb(7, 101, 189);
 }
 
-header>button{
-    width: 3.8rem;
+#iconsMenuPC{
+    width: 17rem;
     height: 3.8rem;
     align-self: center;
     font-size: 2rem;
     color:white;
     background-color: rgb(7, 101, 189);
     border: 0;
+    display: flex;
+    justify-content: space-around;
 }
 
-header>button:hover{
+#iconsMenuPC>i{
+    font-size: 2rem;
+    line-height: 3.8rem;
+    width: 3.8rem;
+    height: 3.8rem;
+    text-align: center;
+}
+
+#bar{
+    display: none;
+}
+
+#iconsMenuPC>i:hover{
     background-color: rgba(255, 255, 255, 0.541);
 }
 
-header>div{
+header>div:nth-last-of-type(1){
     width: 3.8rem;
     height: 3.8rem;
     position: relative;
@@ -46,7 +60,7 @@ header>div{
     line-height: 3.8rem;
 }
 
-header>div:hover{
+header>div:nth-last-of-type(1):hover{
     background-color: rgba(255, 255, 255, 0.541);
 }
 
@@ -73,13 +87,48 @@ header>div:hover{
     z-index: 2;
 }
 
+#mobileMenu{
+    position: absolute;
+    left: 0;
+    top:0;
+    display: none;
+    flex-direction: column;
+    background-color: rgb(7, 101, 189);
+    width: 100%;
+    height: auto;
+    color:white;
+    top:3.8rem;
+    font-size: 2rem;
+    transition: 1s;
+}
+
+.menuLink{
+    line-height: 3.8rem;
+    height: 3.8rem;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+.menuLink>i{
+    line-height: 3.8rem;
+    padding-left: 30%;
+}
+
+.menuLink:hover{
+    background-color: rgba(255, 255, 255, 0.541);
+}
+
 app-cart{
     position: fixed;
     right: 0;
     width: 20rem;
     height: 100vh;
     top:3.8rem;
-    z-index: 2;
+    z-index: 3;
     transition: 0.5s;
     transform: translateX(0);
 }
@@ -90,4 +139,18 @@ app-trip-form{
     /* left:35%; */
     overflow: hidden;
     width: 50vw;
+}
+
+@media only screen and (max-width: 500px){
+    #iconsMenuPC>i{
+        display: none;
+    }
+
+    #bar{
+        display: block !important;
+    }
+
+    #mobileMenu{
+        display: flex;
+    }
 }
