@@ -38,7 +38,7 @@ section{
     margin-left:1rem;
 }
 
-agm-map{
+iframe{
     height: 60vh;
     width: 70vw;
 }
@@ -61,7 +61,7 @@ agm-map{
         width: 90%;
     }
     
-    agm-map{
+    iframe{
         width:90vw;
     }
 }
