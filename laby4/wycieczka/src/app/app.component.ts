@@ -29,4 +29,7 @@ export class AppComponent {
     this.isOpen=false;
     this.isOpenMenu=false;
   }
+  public getTrip(index:string){
+    return this.tripData.tripArray().filter(a=>a.index==index)[0];
+  }
 }

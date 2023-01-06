@@ -34,7 +34,8 @@ export class SingleTripComponent {
     ]);
     this.body=new FormControl('',[
       Validators.required,
-      Validators.pattern("[A-z]+")
+      Validators.minLength(50),
+      Validators.maxLength(500)
     ]);
     this.myform=new FormGroup({
       nick:this.nick,
@@ -60,12 +61,15 @@ export class SingleTripComponent {
     if(this.myform.valid&&this.starsForm>0){
       let opinonObject=this.myform.value;
       opinonObject['rating']=this.starsForm;
-      this.tripData.addOpinion(opinonObject,this.index);
+      //dodawnie do bazy danych
+      // this.tripData.addOpinion(opinonObject,this.index);
       this.firstPage=true;
       this.correctDate=false;
       this.data.opinions.push(opinonObject);
       this.data.sumOpinion+=this.starsForm;
       this.data.numberOfOpinion+=1;
+      this.myform.reset();
+      this.starsForm=0;
       console.log('git');
     }else{
       this.correctDate=true;

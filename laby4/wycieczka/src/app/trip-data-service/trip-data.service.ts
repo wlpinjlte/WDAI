@@ -17,6 +17,7 @@ export class TripDataService {
   reservationDetail=new Map();
   boughtTrips=new Map();
   dataFireBase:any;
+  soonerTrips:string[]=[];
 
   constructor(dataa:AngularFireDatabase) {
     this.dataFireBase=dataa.list('/trips');
@@ -58,6 +59,10 @@ export class TripDataService {
 
   boughtTripsMap(){
     return this.boughtTrips;
+  }
+
+  soonerTripsArray(){
+    return this.soonerTrips;
   }
   
   public highlightedUpdate(){
@@ -139,6 +144,15 @@ export class TripDataService {
     this.allOfReservation-=this.reservationDetail.get(index);
     this.array.filter(a=> a.index==index)[0].maxPlace-=this.reservationDetail.get(index);
     this.reservationDetail.set(index,0);
+    let now=new Date();
+    let startOfTrip=new Date(this.array.filter(a=>a.index==index)[0].start);
+    let difference=startOfTrip.getTime()-now.getTime();
+    //converte to days
+    difference=difference/(1000*60*60*24);
+    console.log(difference);
+    if(difference>0 && difference<=30){
+      this.soonerTrips.push(index);
+    }
     console.log(this.boughtTrips);
   }
 
