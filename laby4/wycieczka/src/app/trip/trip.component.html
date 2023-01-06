@@ -7,8 +7,11 @@
         <p>{{object.Contry|uppercase}}, {{object.start}} - {{object.end}}</p>
         <p>liczba wolnych miejsc: {{currPlace}}</p>
         <div id="ratingAndPrice">
-            <div id="rating">
+            <!-- <div id="rating">
                 <i class="fa-solid fa-star" *ngFor="let i of [1,2,3,4,5]" (click)="starsChange(i)" [ngStyle]="{'color':i<=stars? 'gold':'gray'}"></i>
+            </div> -->
+            <div id="rating">
+                <i class="fa-solid fa-star" *ngFor="let i of arrayToStars" [ngStyle]="{'color':'gold'}"></i>({{object.numberOfOpinion}})
             </div>
             <p>{{(object.unitPrice*tripService.multiply()).toFixed(2)}}{{tripService.currency}}</p>
         </div>

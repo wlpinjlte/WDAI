@@ -1,3 +1,81 @@
 <div id="container">
-    123321
+    <div id="leftSide">
+        <div class="card" id="mainCard">
+            <div id="carousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="card-img-top" [src]="data.img" alt="First slide">
+                    </div>
+                    <div class="carousel-item" *ngFor="let name of data.imgCarousel,index as i">
+                        <img class="card-img-top" src="{{name}}">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">{{data.title}}</h3>
+              <p class="card-text">{{data.description}}</p>
+              <hr>
+              <p class="card-text">{{data.Contry}}, {{data.start}} - {{data.end}}</p>
+              <p class="card-text" style="font-size:0.9rem">liczba wolnych miejsc: {{data.maxPlace-getTripResevation()}}</p>
+              <div id="bottomCard">
+                <div>
+                    <i class="fa-solid fa-star" *ngFor="let i of getArray(stars)" [ngStyle]="{'color':'gold'}"></i>({{data.numberOfOpinion}})
+                </div>
+                <p class="card-text">{{(data.unitPrice*tripData.multiply()).toFixed(2)}}{{tripData.currency}}</p>
+              </div>
+            </div>
+          </div>
+    </div>
+    <div id="rightSide">
+        <div id="card" [ngStyle]="{'transform':firstPage? 'rotateY(0)':'rotateY(180deg)'}">
+            <div id="opinonContainer">
+                <h1>Opinie o Wycieczce</h1>
+                <div class="opinion" *ngFor="let opinionData of data.opinions">
+                    <div class="topOpinion">
+                        <h2 class="title">{{opinionData.nick}}</h2>
+                        <div>
+                            <i class="fa-solid fa-star" *ngFor="let i of getArray(opinionData.rating)" [ngStyle]="{'color':'gold'}"></i>
+                        </div>
+                    </div>
+                    <p class="opiononBody">{{opinionData.body}}</p>
+                </div>
+                <button class="btn btn-primary" (click)="changePage()">Przejdz do Formularza</button>
+            </div>
+            <div id="opinionForm" class="form-group" >
+                <i class="fa-solid fa-arrow-left" id="arrowBack" (click)="changePage()"></i>
+                <form [formGroup]="myform" novalidate (ngSubmit)="onSubmit()">
+                    <h2>Formularz Opini</h2>
+                    <p>NICK:</p>
+                    <input class="form-control" formControlName="nick" [ngClass]="{
+                        'is-valid':!nick.errors?.['required'] && (nick.dirty||nick.touched),
+                        'is-invalid':nick.errors?.['required'] && (nick.dirty||nick.touched)
+                    }">
+                    <p>Treść Opini:</p>
+                    <textarea class="form-control" formControlName="body" rows="6" cols="50" [ngClass]="{
+                        'is-valid':body.valid && (body.dirty||body.touched),
+                        'is-invalid':body.invalid && (body.dirty||body.touched)
+                    }"></textarea>
+                    <p [ngStyle]="{'color':'red','opacity': correctDate? 1:0,'margin-bottom':'0.2rem'}">Popraw dane wprowadzone do formularza</p>
+                    <div id="bottomForm">
+                        <button type="submit" class="btn btn-primary">Dodaj opinie</button>
+                        <div>
+                            Oceń wycieczkę:
+                            <i class="fa-solid fa-star" *ngFor="let i of [1,2,3,4,5]" (click)="starsChange(i)" [ngStyle]="{'color':i<=starsForm? 'gold':'gray'}"></i>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+

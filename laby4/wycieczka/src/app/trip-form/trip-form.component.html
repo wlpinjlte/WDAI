@@ -44,10 +44,17 @@
             }">
         </div>
         <div class="form-group">
-            <h3>Zdjecie</h3>
+            <h3>Zdjecie Wycieczki</h3>
             <input class="form-control" formControlName="img" [ngClass]="{
                 'is-valid':!img.errors?.['required'] && (img.dirty||img.touched),
                 'is-invalid':img.errors?.['required'] && (img.dirty||img.touched)
+            }">
+        </div>
+        <div class="form-group">
+            <h3>Zdjecia powiązane z wycieczką(podawać po spacji)</h3>
+            <input class="form-control" formControlName="imgCarousel" [ngClass]="{
+                'is-valid':!imgCarousel.errors?.['required'] && (imgCarousel.dirty||imgCarousel.touched),
+                'is-invalid':imgCarousel.errors?.['required'] && (imgCarousel.dirty||imgCarousel.touched)
             }">
         </div>
         <div class="form-group">

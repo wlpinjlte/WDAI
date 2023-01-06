@@ -11,6 +11,10 @@ export interface tripData{
   index:string;
   img:string;
   description:string;
+  imgCarousel:string[];
+  opinionSum:number;
+  numberOfOpinion:number;
+  opinions:any[];
 }
 @Component({
   selector: 'app-trip',
@@ -20,15 +24,19 @@ export interface tripData{
 
 
 export class TripComponent implements OnInit{
-  @Input()object: tripData={title:"",Contry:"",start:'',end:'',unitPrice:0,maxPlace:0,index:'',img:'',description:''};
+  @Input()object: tripData={title:"",Contry:"",start:'',end:'',unitPrice:0,maxPlace:0,index:'',img:'',description:'',imgCarousel:[],opinionSum:0,numberOfOpinion:0,opinions:[]};
   @Input()index: number=-1;
   currPlace!:number;
   stars:number=0;
-  constructor(public tripService:TripDataService){
-    
-  }
+  arrayToStars:number[]=[];
+  constructor(public tripService:TripDataService){}
+
   ngOnInit(): void {
     this.currPlace=this.object.maxPlace-this.tripService.reservationDetailMap().get(this.object.index)
+    this.stars=(this.object.numberOfOpinion==0? 0:this.object.opinionSum/this.object.numberOfOpinion)
+    let sizeOfArray=Math.floor(this.stars);
+    this.arrayToStars=new Array(sizeOfArray);
+    this.arrayToStars.map((k,v)=>v+1);
   }
   public addButton(): void{
     if(this.currPlace<this.object.maxPlace){

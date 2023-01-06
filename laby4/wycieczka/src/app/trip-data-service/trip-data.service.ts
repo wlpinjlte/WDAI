@@ -120,8 +120,13 @@ export class TripDataService {
   }
 
   public addToArray(trip:any){
+    console.log(trip);
+    trip.imgCarousel=trip.imgCarousel.split(' ');
     let postedreference=this.dataFireBase.push();
     trip['index']=postedreference.getKey();
+    trip['numberOfOpinion']=0;
+    trip['opinionSum']=0;
+    trip['opinions']=[];
     postedreference.set(trip);
   }
 
@@ -143,5 +148,15 @@ export class TripDataService {
         this.buyTrip(trip[0]);
       }
     }
+  }
+
+  public addOpinion(opinonToAdd:any,index:string){
+    let tempOpinons=[...this.tripArray().filter(a=>a.index==index)[0].opinions];
+    let tempNumberOfOpinion=this.tripArray().filter(a=>a.index==index)[0].numberOfOpinion+1;
+    let tempSumOpinion=this.tripArray().filter(a=>a.index==index)[0].opinionSum+opinonToAdd.rating;
+    tempOpinons.push(opinonToAdd);
+    console.log(tempOpinons,tempNumberOfOpinion,tempSumOpinion);
+    this.dataFireBase.update(index,{opinions:tempOpinons,numberOfOpinion:tempNumberOfOpinion,opinionSum:tempSumOpinion});
+    console.log("elo");
   }
 }

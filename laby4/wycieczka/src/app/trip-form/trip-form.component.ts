@@ -20,12 +20,14 @@ export class TripFormComponent implements OnInit{
   unitPrice!:FormControl;
   maxPlace!:FormControl;
   img!:FormControl;
+  imgCarousel!:FormControl;
   description!:FormControl;
   now=new Date()
-  today:string = this.now.getFullYear()+'-'+(this.now.getMonth()+1)+'-'+this.now.getDate();
+  today:string = this.now.getFullYear()+'-'+((this.now.getMonth()+1)>9?(this.now.getMonth()+1):'0'+(this.now.getMonth()+1))+'-'+(this.now.getDate()>9?this.now.getDate():"0"+this.now.getDate());
   constructor(public tripData:TripDataService) {}
 
   ngOnInit(): void {
+    console.log(this.today);
     this.title= new FormControl('',[
       Validators.required,
       Validators.pattern("\([A-z]+[ ]?\)+")
@@ -54,6 +56,9 @@ export class TripFormComponent implements OnInit{
     this.description=new FormControl('',[
       Validators.required
     ]);
+    this.imgCarousel=new FormControl('',[
+      Validators.required
+    ])
     this.myform=new FormGroup({
       title:this.title,
       Contry:this.Contry,
@@ -62,7 +67,8 @@ export class TripFormComponent implements OnInit{
       unitPrice:this.unitPrice,
       maxPlace:this.maxPlace,
       img:this.img,
-      description:this.description
+      description:this.description,
+      imgCarousel:this.imgCarousel
     });
   }
   public onSubmit(){
