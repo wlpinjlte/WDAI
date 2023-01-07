@@ -34,7 +34,7 @@
             </div>
           </div>
     </div>
-    <div id="rightSide">
+    <div id="rightSide" [ngStyle]="{'min-height':firstPage? '0':'29rem','max-height':firstPage? '80vh':'29rem','overflow-y':firstPage? 'auto':'hidden'}">
         <div id="card" [ngStyle]="{'transform':firstPage? 'rotateY(0)':'rotateY(180deg)'}">
             <div id="opinonContainer">
                 <h1>Opinie o Wycieczce</h1>

@@ -14,6 +14,7 @@
     background-color: rgb(255,250,233);
     transition: 0.8s;
     min-height: 0;
+    max-height: 80vh;
     display: flex;
     flex-direction: column;
     border-radius: 3px;

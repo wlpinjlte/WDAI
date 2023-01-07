@@ -164,9 +164,14 @@ app-trip-form{
     padding: 1rem;
     display: none;
     flex-direction: column;
+    width: 10rem;
+    left:-4.4rem;
 }
 #notification:hover #listOfSoonerTrips{
     display: flex;
+}
+#notification{
+    position: relative;
 }
 @media only screen and (max-width: 500px){
     #iconsMenuPC>i{

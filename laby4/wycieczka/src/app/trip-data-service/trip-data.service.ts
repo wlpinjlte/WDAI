@@ -150,7 +150,7 @@ export class TripDataService {
     //converte to days
     difference=difference/(1000*60*60*24);
     console.log(difference);
-    if(difference>0 && difference<=30){
+    if(difference>0 && difference<=30&&this.soonerTripsArray().filter(a=>a==index).length==0){
       this.soonerTrips.push(index);
     }
     console.log(this.boughtTrips);

@@ -16,20 +16,21 @@ export class TripHistoryComponent {
   }
 
   public getText(index:string):string{
-    if(Date.parse(this.today)>Date.parse(this.getTrip(index).start)){
-      return "Wycieczka się odbyła";
-    }else if(Date.parse(this.today)>=Date.parse(this.getTrip(index).start) &&Date.parse(this.today)<=Date.parse(this.getTrip(index).end)){
+    if(Date.parse(this.today)>=Date.parse(this.getTrip(index).start) &&Date.parse(this.today)<=Date.parse(this.getTrip(index).end)){
       return "W trakcie";
+    }else if(Date.parse(this.today)>Date.parse(this.getTrip(index).start)){
+      return "Zakończona";
     }else{
       return "Oczekujący";
     }
   }
 
   public getColor(index:string):string{
-    if(Date.parse(this.today)>Date.parse(this.getTrip(index).start)){
-      return "red";
-    }else if(Date.parse(this.today)>=Date.parse(this.getTrip(index).start) &&Date.parse(this.today)<=Date.parse(this.getTrip(index).end)){
+    if(Date.parse(this.today)>=Date.parse(this.getTrip(index).start) &&Date.parse(this.today)<=Date.parse(this.getTrip(index).end)){
       return "green";
+    }
+    else if(Date.parse(this.today)>Date.parse(this.getTrip(index).start)){
+      return "red";
     }else{
       return "gold";
     }
@@ -38,7 +39,7 @@ export class TripHistoryComponent {
   public fillterCheck(text:string){
     if(this.fillter==0){
       return true;
-    }else if(this.fillter==1 && text=="Wycieczka się odbyła"){
+    }else if(this.fillter==1 && text=="Zakończona"){
       return true;
     }else if(this.fillter==2 && text=="W trakcie"){
       return true;
