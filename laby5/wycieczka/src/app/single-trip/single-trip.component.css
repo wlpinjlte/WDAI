@@ -1,0 +1,142 @@
+#container{
+    position: relative;
+    top:6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#leftSide{
+    width: 30vw;
+}
+#rightSide{
+    position: relative;
+    width: 40vw;
+    background-color: rgb(255,250,233);
+    transition: 0.8s;
+    min-height: 0;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    border-radius: 3px;
+    margin-bottom: 2rem;
+}
+#mainCard{
+    width: 100%;
+    background-color: rgb(255,250,233);
+}
+#bottomCard{
+    display: flex;
+    justify-content: space-between;
+}
+.opinion{
+    display: flex;
+    flex-direction: column;
+}
+#opinonContainer{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+#opinonContainer>h1{
+    text-align: center;
+}
+.topOpinion{
+    display: flex;
+}
+.topOpinion i{
+    position: relative;
+    top:20%;
+}
+#card{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+#opinonContainer,#opinionForm{
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+  background-color: rgb(255,250,233);
+  border-radius: 3px;
+}
+#opinionForm{
+    top:0;
+    position: absolute;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    transform: rotateY(180deg);
+}
+/* #rightSide:hover #card{
+    transform: rotateY(180deg);
+}
+#rightSide:hover {
+    analogicznie max-height: ;
+    min-height: 70vh;
+} */
+#rightSide button{
+    align-self: center;
+    margin-bottom: 1rem;
+}
+form{
+    display: flex;
+    flex-direction: column;
+}
+form h2{
+    align-self: center;
+}
+#opinionForm p{
+    margin-top: 1rem;
+}
+#bottomForm{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+#arrowBack{
+    color: black;
+    font-size: 2rem;
+    position: absolute;
+}
+#bottomForm>div{
+    line-height: 2.3rem;
+}
+@media only screen and (max-width: 900px){
+    #leftSide{
+        width: 40vw;
+    }
+    #rightSide{
+        width: 50vw;
+    }
+}
+@media only screen and (max-width: 750px){
+    #leftSide{
+        width: 70vw;
+        margin-bottom: 1rem;
+    }
+    #rightSide{
+        width: 70vw;
+    }
+    #container{
+        flex-direction: column;
+    }
+}
+@media only screen and (max-width: 550px){
+    #leftSide{
+        width: 90vw;
+    }
+    #rightSide{
+        width: 90vw;
+    }
+    #container{
+        flex-direction: column;
+    }
+}
+@media only screen and (max-width: 410px){
+    #bottomForm>div{
+        font-size: 0.85rem;
+    }
+}

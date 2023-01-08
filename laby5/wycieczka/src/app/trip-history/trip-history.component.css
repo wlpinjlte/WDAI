@@ -1,0 +1,94 @@
+#container{
+    position: relative;
+    top:3.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#container>div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#select{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3498db;
+}
+
+.trip{
+    margin-top: 1rem;
+    width: 60%;
+    background-color: rgb(255,250,233);
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.trip>img{
+    width: 25%;
+    border-radius: 20px;
+}
+
+#status>div{
+    position: relative;
+    top:20%;
+    text-align: center;
+    font-size: 1.7rem;
+}
+
+#information>div{
+    font-size: 1.2rem;
+    padding:0.2rem;
+}
+
+select{
+    padding: 0.5rem;
+    font-size: 1rem;
+    background-color: #3498db;
+    border: 0;
+    color:white;
+    outline: 0;
+}
+
+option{
+    font-size: 1rem;
+    border: 0;
+    background-color: #3498db;
+}
+
+@media only screen and (max-width: 1050px){
+    .trip{
+        width: 80%;
+    }
+}
+@media only screen and (max-width: 800px){
+    .trip{
+        width: 92%;
+    }
+}
+@media only screen and (max-width: 650px){
+    #status>div{
+        font-size: 1.2rem;
+    }
+    
+    #information>div{
+        font-size: 0.7rem;
+    }
+}
+@media only screen and (max-width: 450px){
+    #status>div{
+        font-size: 0.7rem;
+    }
+    #status{
+        font-size: 0.7rem;
+    }
+    #information>div{
+        font-size: 0.7rem;
+    }
+}

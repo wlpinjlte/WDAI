@@ -1,0 +1,218 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(7, 101, 189);
+    position: fixed;
+    width: 100%;
+    z-index: 3;
+}
+
+select{
+    padding: 1rem;
+    font-size: 1.5rem;
+    background-color: rgb(7, 101, 189);
+    border: 0;
+    color:white;
+    outline: 0;
+}
+
+option{
+    font-size: 1.5rem;
+    border: 0;
+    background-color: rgb(7, 101, 189);
+}
+
+#iconsMenuPC{
+    width: 17rem;
+    height: 3.8rem;
+    align-self: center;
+    font-size: 2rem;
+    color:white;
+    background-color: rgb(7, 101, 189);
+    border: 0;
+    display: flex;
+    justify-content: center;
+}
+
+#iconsMenuPC>i{
+    font-size: 2rem;
+    line-height: 3.8rem;
+    width: 3.8rem;
+    height: 3.8rem;
+    text-align: center;
+}
+
+#bar{
+    display: none;
+}
+
+#iconsMenuPC>i:hover{
+    background-color: rgba(255, 255, 255, 0.541);
+}
+
+#koszyk{
+    width: 3.8rem;
+    height: 3.8rem;
+    position: relative;
+    color:white;
+    font-size: 2rem;
+    text-align: center;
+    line-height: 3.8rem;
+}
+
+#koszyk:hover{
+    background-color: rgba(255, 255, 255, 0.541);
+}
+
+#reservationNumber{
+    background-color: rgb(50, 248, 0);
+    border-radius: 50%;
+    font-size: 1rem;
+    height: 1.5rem;
+    width: 1.5rem;
+    text-align: center;
+    vertical-align: center;
+    line-height: 1.5rem;
+    position: absolute;
+    right:0;
+    top:0;
+    z-index: 1;
+}
+
+#background{
+    background-color: rgba(128, 128, 128, 0.425);
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+}
+
+#mobileMenu{
+    position: absolute;
+    left: 0;
+    display: none;
+    flex-direction: column;
+    background-color: rgb(7, 101, 189);
+    width: 100%;
+    height: auto;
+    color:white;
+    top:3.8rem;
+    font-size: 2rem;
+    transition: 1s;
+}
+
+.menuLink{
+    line-height: 3.8rem;
+    height: 3.8rem;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+}
+
+.menuLink>i{
+    line-height: 3.8rem;
+    padding-left: 30%;
+}
+
+.menuLink:hover{
+    background-color: rgba(255, 255, 255, 0.541);
+}
+
+#rightSideNav{
+    display: flex;
+}
+
+#notification>i{
+    font-size: 2rem;
+    line-height: 3.8rem;
+    width: 3.8rem;
+    height: 3.8rem;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+#notification>i:hover{
+    background-color: rgba(255, 255, 255, 0.541);
+}
+#logIn,#logOut{
+    position: relative;
+}
+#logIn,#logOut i{
+    font-size: 2rem;
+    line-height: 3.8rem;
+    width: 3.8rem;
+    height: 3.8rem;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+#logOut div{
+    color:white;
+    font-size: 0.6rem;
+    position: absolute;
+    top:80%;
+    left: 25%;
+}
+#logIn div{
+    color:white;
+    font-size: 0.7rem;
+    position: absolute;
+    top:37%;
+    left: 28.6%;
+}
+#logIn:hover,#logOut:hover i{
+    background-color: rgba(255, 255, 255, 0.541);
+}
+
+app-cart{
+    position: fixed;
+    right: 0;
+    width: 20rem;
+    height: 100vh;
+    top:3.8rem;
+    z-index: 3;
+    transition: 0.5s;
+    transform: translateX(0);
+}
+
+app-trip-form{
+    position: relative;
+    top:6rem;
+    /* left:35%; */
+    overflow: hidden;
+    width: 50vw;
+}
+
+#listOfSoonerTrips{
+    position: absolute;
+    background-color: white;
+    padding: 1rem;
+    display: none;
+    flex-direction: column;
+    width: 10rem;
+    left:-4.4rem;
+}
+
+#notification:hover #listOfSoonerTrips{
+    display: flex;
+}
+
+#notification{
+    position: relative;
+}
+
+@media only screen and (max-width: 620px){
+    #iconsMenuPC>i{
+        display: none;
+    }
+
+    #bar{
+        display: block !important;
+    }
+
+    #mobileMenu{
+        display: flex;
+    }
+}

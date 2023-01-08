@@ -1,0 +1,101 @@
+#container{
+    padding: 2rem;
+    box-shadow: 0 0 10px black;
+    border-radius: 10px;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-bottom: 0.5rem;
+    width: 17rem;
+    margin-left: 0.5rem;
+}
+
+#container>p{
+    min-height: 80%;
+}
+
+hr{
+    background-color: black;
+    width: 100%;
+}
+
+#buttonsSection{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#buttonsSection>*{
+    margin-right: 0.5rem;
+}
+
+#buttonsSection>button{
+    height: 1.2rem;
+    width: 1.2rem;
+    text-align: center;
+    align-self: center;
+    line-height: 0.7rem;
+    background-color: rgb(170, 158, 158);
+    border: 0;
+    border-radius: 50%;
+}
+
+.cheapest{
+    border: 5px solid red;
+}
+
+.mostExpensive{
+    border: 5px solid green;
+}
+
+.normal{
+    border:5px solid rgb(255,250,233);
+}
+
+.orangeBorder{
+    border: 5px solid orange;
+}
+
+img{
+    align-self: center;
+    border-radius: 50%;
+    width: 15rem;
+    height: 10rem;
+    cursor: pointer;
+}
+
+#deleteButton{
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    right:3%;
+    top:3%;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+#bottomTrip>p:nth-child(2){
+    font-size: 0.9rem;
+}
+
+#bottomTrip>p:nth-child(3){
+    font-size: 0.8rem;
+}
+
+#ratingAndPrice{
+    display: flex;
+    justify-content: space-between;
+}
+
+#ratingAndPrice>p{
+    margin:0;
+}
+
+i{
+    color: gray;
+}
+
+#container>p{
+    height: 8rem;
+}

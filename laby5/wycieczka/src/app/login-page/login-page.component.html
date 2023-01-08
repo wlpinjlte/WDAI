@@ -1,0 +1,14 @@
+<div id="container">
+    <div class="form-outline mb-4">
+      <input [(ngModel)]="email" type="email" class="form-control"/>
+      <label class="form-label">Email address</label>
+    </div>
+    <div class="form-outline mb-4">
+      <input type="password" id="form2Example2" class="form-control" [(ngModel)]="password"/>
+      <label class="form-label">Password</label>
+    </div>
+    <button type="button" class="btn btn-primary btn-block mb-4" (click)="singIn()">Sign in</button>
+    <div class="text-center" id="bottom">
+      <p>Not a member? <span id="singUp" (click)="singUp()">Register</span></p>
+    </div>
+</div>

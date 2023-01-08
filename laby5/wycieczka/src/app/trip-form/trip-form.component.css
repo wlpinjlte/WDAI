@@ -1,0 +1,22 @@
+#container{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top:6rem;
+}
+form{
+    padding:2rem;
+    background-color: rgb(255,250,233);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    
+}
+button{
+    margin-top: 1rem;
+}
+
+input{
+    width: 100%;
+}

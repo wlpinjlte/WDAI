@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+    background-color: #252525;
+    font-family: sans-serif;
+    margin:0;
+    overflow-x: hidden;
+}
+app-root{
+    position: relative;
+}

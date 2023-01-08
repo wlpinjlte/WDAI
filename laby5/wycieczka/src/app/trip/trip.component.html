@@ -1,0 +1,26 @@
+<div id="container" [ngStyle]="{'background-color': getStockColor()}" [ngClass]="{'cheapest':tripService.highlightedArray()[index]==1||tripService.highlightedArray()[index]==-1,'mostExpensive': tripService.highlightedArray()[index]==2,'normal':tripService.highlightedArray()[index]==0&&currPlace>3,'orangeBorder':tripService.highlightedArray()[index]==0&&currPlace<=3}">
+    <img [src]="object.img" routerLink="/trip/{{object.index}}">
+    <h3>{{object.title|uppercase}}</h3>
+    <p>{{object.description}}</p>
+    <div id="bottomTrip">
+        <hr>
+        <p>{{object.Contry|uppercase}}, {{object.start}} - {{object.end}}</p>
+        <p>liczba wolnych miejsc: {{currPlace}}</p>
+        <div id="ratingAndPrice">
+            <!-- <div id="rating">
+                <i class="fa-solid fa-star" *ngFor="let i of [1,2,3,4,5]" (click)="starsChange(i)" [ngStyle]="{'color':i<=stars? 'gold':'gray'}"></i>
+            </div> -->
+            <div id="rating">
+                <i class="fa-solid fa-star" *ngFor="let i of arrayToStars" [ngStyle]="{'color':'gold'}"></i>({{object.numberOfOpinion}})
+            </div>
+            <p>{{(object.unitPrice*tripService.multiply()).toFixed(2)}}{{tripService.currency}}</p>
+        </div>
+        <div id="buttonsSection" *ngIf="authService.adminPermition()||authService.managerPermition()||authService.userPermition()">
+            <button (click)="substrackButton()"[ngStyle]="{'transform':currPlace==0? 'scale(0)':'scale(100%)'}">+</button>
+            <p [ngStyle]="{'color':getPColor(),'font-size':'0.8rem'}">Zarezerwowane: {{object.maxPlace-currPlace}}</p>
+            <button (click)="addButton()">-</button>
+        </div>
+        <button (click)="deleteComponet()" id="deleteButton" *ngIf="authService.adminPermition()||authService.managerPermition()">X</button>
+    </div>
+</div>
+

@@ -1,0 +1,58 @@
+<header>
+    <select [(ngModel)]="tripData.currency">
+        <option value="$">Dolar $</option>
+        <option value="€">Euro €</option>
+        <option value="zł">PLN zł</option>
+    </select>
+    <div id="iconsMenuPC">
+        <i class="fa-solid fa-bars" id="bar" (click)="openMenu()"></i>
+        <i class="fa-solid fa-house" routerLink="/main-page"></i>
+        <i class="fa-solid fa-plus" routerLink="/trip-form" *ngIf="authService.adminPermition()||authService.managerPermition()"></i>
+        <i class="fa-solid fa-list"routerLink="/trip-list"></i>
+        <i class="fa-solid fa-timeline" routerLink="/trip-history" *ngIf="authService.adminPermition()||authService.managerPermition()||authService.userPermition()"></i>
+        <i class="fa-solid fa-shield" routerLink="" *ngIf="authService.adminPermition()"></i>
+    </div>
+    <div id="mobileMenu" [ngStyle]="{'transform': isOpenMenu? 'translateX(0)':'translateX(-100%)'}">
+        <div class="menuLink"  routerLink="/main-page">
+            <i class="fa-solid fa-house"></i> Home 
+        </div>
+        <div class="menuLink" routerLink="/trip-form" *ngIf="authService.adminPermition()||authService.managerPermition()">
+            <i class="fa-solid fa-plus"></i> Add Trip
+        </div>
+        <div class="menuLink" routerLink="/trip-list">
+            <i class="fa-solid fa-list"></i> Trip List
+        </div>
+        <div class="menuLink" routerLink="/trip-history" *ngIf="authService.adminPermition()||authService.managerPermition()||authService.userPermition()">
+            <i class="fa-solid fa-timeline"></i> Trip History
+        </div>
+        <div class="menuLink" routerLink="" *ngIf="authService.adminPermition()">
+            <i class="fa-solid fa-shield"></i> Admin Panel
+        </div>
+    </div>
+    <div id="rightSideNav">
+        <div id="logOut" *ngIf="authService.adminPermition()||authService.managerPermition()||authService.userPermition()" (click)="authService.logOut()">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <div>logOut</div>
+        </div>
+        <div id="logIn" *ngIf="!(authService.adminPermition()||authService.managerPermition()||authService.userPermition())" routerLink="/login">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <div>logIn</div>
+        </div>
+        <div id="notification" *ngIf="authService.adminPermition()||authService.managerPermition()||authService.userPermition()">
+            <i class="fa-solid fa-bell"></i>
+            <div id="listOfSoonerTrips" *ngIf="tripData.soonerTripsArray().length>0">
+                <div class="soonerTripDiv" *ngFor="let index of tripData.soonerTripsArray()">
+                    <p>{{getTrip(index).title}}</p>
+                    <p>{{getTrip(index).start}}</p>
+                </div>
+            </div>
+        </div>
+        <div id="koszyk" (click)="openCart()" *ngIf="authService.adminPermition()||authService.managerPermition()||authService.userPermition()">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <div id="reservationNumber">{{tripData.allOfReservation}}</div>
+        </div>
+    </div>   
+</header>
+<div id="background" *ngIf="isOpen||isOpenMenu" (click)="closeEverything()"></div>
+<router-outlet></router-outlet>
+<app-cart [ngStyle]="{'transform': isOpen? 'translateX(0)':'translateX(20rem)'}"></app-cart>
