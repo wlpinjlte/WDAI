@@ -2,6 +2,7 @@ import { trigger } from '@angular/animations';
 import { Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {TripDataService} from '../trip-data-service/trip-data.service';
 import { AuthenticationServiceService } from '../authentication-service/authentication-service.service';
+import { Observable } from 'rxjs';
 export interface tripData{
   title:string;
   Contry:string;
@@ -30,15 +31,18 @@ export class TripComponent implements OnInit{
   stars:number=0;
   arrayToStars:number[]=[];
   constructor(public tripService:TripDataService,public authService:AuthenticationServiceService){}
-
+  curr:number=0;
+  toShow:boolean=false;
   ngOnInit() {
     this.stars=(this.object.numberOfOpinion==0? 0:this.object.opinionSum/this.object.numberOfOpinion)
     let sizeOfArray=Math.floor(this.stars);
     this.arrayToStars=new Array(sizeOfArray);
     this.arrayToStars.map((k,v)=>v+1);
+    this.currUpadte();
   }
   public addButton(): void{
-    if(this.currPlace()<this.object.maxPlace){;
+    if(this.curr<this.object.maxPlace){
+      this.curr+=1;
       this.avabileEmiter();
       this.tripService.substractFromMap(this.object.index);
       console.log(this.object.index+"object");
@@ -47,34 +51,35 @@ export class TripComponent implements OnInit{
   }
 
   public substrackButton(): void{
-    if(this.currPlace()>0){
+    if(this.curr>0){
+      this.curr-=1;
       this.avabileEmiter();
       this.tripService.addToMap(this.object.index);
     }
   }
 
   public getStockColor():string{
-    if(this.currPlace()==0){
+    if(this.curr==0){
       return "red";
     }
-    if(this.currPlace()<4){
+    if(this.curr<4){
       return "orange";
     }
     return "rgb(255,250,233)";
   }
 
   public getPColor():string{
-    if(this.currPlace()==0){
+    if(this.curr==0){
       return 'black';
     }
-    else if(this.currPlace()<10){
+    else if(this.curr<10){
       return "red"
     }
     return "green";
   }
   
   public avabileEmiter(){
-    if(this.currPlace()==0){
+    if(this.curr==0){
       this.tripService.avaibleChange(this.index,false);
     }else{
       this.tripService.avaibleChange(this.index,true);
@@ -82,15 +87,18 @@ export class TripComponent implements OnInit{
   }
 
   public deleteComponet(){
-    console.log(1);
     this.tripService.deleteComponet(this.index);
   }
 
   public starsChange(i:number):void{
     this.stars=i;
   }
-  public currPlace(){
-    let onReservation=this.authService.numberOfReservationMap.has(this.object.index)? this.authService.numberOfReservationMap.get(this.object.index):0;
-    return this.object.maxPlace-onReservation;
+  public currUpadte(){
+      setTimeout(() => {
+        let numberOfResevation=this.authService.numberOfReservationMap.has(this.object.index)? this.authService.numberOfReservationMap.get(this.object.index):0;
+        this.curr=this.object.maxPlace-numberOfResevation;
+        this.avabileEmiter();
+        this.toShow=true;
+      }, 30);
   }
 }

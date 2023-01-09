@@ -15,8 +15,6 @@ export class TripDataService {
   highlighted: number[]=[];
   avaible:boolean[]=[];
   currency='$';
-  reservationDetail=new Map();
-  boughtTrips=new Map();
   dataFireBase:any;
   soonerTrips:string[]=[];
 
@@ -25,17 +23,8 @@ export class TripDataService {
     this.trips= dataa.list('/trips').valueChanges();
     this.trips.subscribe(trip=>{
       this.array=trip;
-      this.avaible=[];
-      this.array.forEach(a=>{//do zmiany
-        if(!this.reservationDetail.has(a['index'])){
-          this.reservationDetail.set(a['index'],0);
-        }
-        if(a.maxPlace-this.reservationDetail.get(a['index'])>0){
-          this.avaible.push(true);
-        }else{
-          this.avaible.push(false);
-        }
-      })
+      this.avaible=new Array(this.array.length);
+      this.avaible.fill(true);
       this.highlightedUpdate();
     })
   }
@@ -102,12 +91,10 @@ export class TripDataService {
 
   public addToMap(index:string):void{
     this.authService.addReservation(index);
-    console.log(this.reservationDetail);
   }
 
   public substractFromMap(index:string):void{
     this.authService.removeReservation(index);
-    console.log(this.reservationDetail);
   }
 
   public addToArray(trip:any){
@@ -134,7 +121,6 @@ export class TripDataService {
     if(difference>0 && difference<=30&&this.soonerTripsArray().filter(a=>a==index).length==0){
       this.soonerTrips.push(index);
     }
-    console.log(this.boughtTrips);
   }
 
   public buyAll(){
