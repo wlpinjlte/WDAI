@@ -7,7 +7,7 @@ import { AuthenticationServiceService } from '../authentication-service/authenti
 @Injectable({
   providedIn: 'root'
 })
-
+//najdroższa najtańsza do zmiany
 export class TripDataService {
   // array=data;
   array!:any[];
@@ -15,7 +15,6 @@ export class TripDataService {
   highlighted: number[]=[];
   avaible:boolean[]=[];
   currency='$';
-  allOfReservation=0; 
   reservationDetail=new Map();
   boughtTrips=new Map();
   dataFireBase:any;
@@ -41,10 +40,6 @@ export class TripDataService {
     })
   }
 
-  reservationDetailMap(){
-    return this.reservationDetail;
-  }
-
   tripArray(){
     return this.array;
   }
@@ -55,10 +50,6 @@ export class TripDataService {
 
   avaibleArray(){
     return this.avaible;
-  }
-
-  boughtTripsMap(){
-    return this.boughtTrips;
   }
 
   soonerTripsArray(){
@@ -87,7 +78,6 @@ export class TripDataService {
 
   public deleteComponet(index:number):void{
     console.log(index);
-    this.allOfReservation-=this.authService.numberOfResevation(this.array[index]['index'])
     this.authService.removeAllReservation(this.array[index]['index']);
     //removebought
     this.dataFireBase.remove(this.array[index]['index']);
@@ -112,13 +102,11 @@ export class TripDataService {
 
   public addToMap(index:string):void{
     this.authService.addReservation(index);
-    this.allOfReservation+=1;
     console.log(this.reservationDetail);
   }
 
   public substractFromMap(index:string):void{
     this.authService.removeReservation(index);
-    this.allOfReservation-=1;
     console.log(this.reservationDetail);
   }
 
@@ -135,7 +123,6 @@ export class TripDataService {
   }
 
   public buyTrip(index:string){
-    this.allOfReservation-=this.authService.numberOfResevation(index);
     this.dataFireBase.update(index,{'maxPlace':this.array.filter(a=> a.index==index)[0].maxPlace-this.authService.numberOfResevation(index)});
     this.authService.addBought(index);
     let now=new Date();
@@ -150,10 +137,10 @@ export class TripDataService {
     console.log(this.boughtTrips);
   }
 
-  public buyAll(){//do zmiany
-    for(let trip of this.reservationDetail.entries()){
-      if(trip[1]>0){
-        this.buyTrip(trip[0]);
+  public buyAll(){
+    for(let trip of this.authService.getResevationArray()){
+      if(trip.quantity>0){
+        this.buyTrip(trip.index);
       }
     }
   }

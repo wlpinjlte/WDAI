@@ -18,6 +18,8 @@ export class AuthenticationServiceService {
   userStatus:string='gosc';
   userFireBaseReservation:any;
   userFireBaseBought:any;
+  allOfReservation=0;
+  numberOfReservationMap=new Map();
   constructor(public auth:Auth,public angularFireAuth: AngularFireAuth,public dataa:AngularFireDatabase,public router:Router) {
     this.dataFireBase=dataa.list('/users');
     this.trips= dataa.list('/users').valueChanges();
@@ -39,7 +41,14 @@ export class AuthenticationServiceService {
       this.userStatus=this.userInfo.role;
       this.userFireBaseReservation=this.dataa.list('/users/'+this.userInfo.index+'/reservation');
       this.userFireBaseBought=this.dataa.list('/users/'+this.userInfo.index+'/bought');
+      this.allOfReservation=0;
+      this.numberOfReservationMap.clear();
+      this.getResevationArray().forEach(a=>{
+        this.allOfReservation+=a.quantity;
+        this.numberOfReservationMap.set(a.index,a.quantity);
+      })
       console.log(this.userInfo);
+      console.log(this.numberOfReservationMap);
     });
   }
 
@@ -133,18 +142,24 @@ export class AuthenticationServiceService {
   public removeAllReservation(index:string){
     let reservationArray:any[]=this.getResevationArray();
     let tripToReservation=reservationArray.filter(a=>a.index==index);
+    console.log(reservationArray,index);
     this.userFireBaseReservation.remove(tripToReservation[0].id);
   }
 
   public numberOfResevation(index:string){
-    let reservationArray:any[]=this.getResevationArray();
-    return reservationArray.filter(a=>a.index==index)[0].quantity;
+    return this.numberOfReservationMap.has(index)? this.numberOfReservationMap.get(index):0;
   }
 
   public getResevationArray(){
-    return Object.values(this.userInfo.reservation);
+    let array=Object.values(this.userInfo.reservation);
+    array.shift();
+    let reservationArray:any[]=this.isLogIn? array:[];
+    return reservationArray;
   }
   public getBoughtArray(){
-    return Object.values(this.userInfo.bought);
+    let array=Object.values(this.userInfo.bought);
+    array.shift();
+    let boughtArray:any[]=this.isLogIn? array:[];
+    return boughtArray;
   }
 }

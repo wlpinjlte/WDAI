@@ -40,6 +40,6 @@ import { initializeApp } from 'firebase/app';
     provideFirebaseApp(() => initializeApp(environment.firebase))
   ],
   providers: [],
-  bootstrap: [AppComponent,TripFormComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

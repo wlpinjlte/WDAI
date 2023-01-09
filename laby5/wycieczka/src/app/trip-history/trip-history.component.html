@@ -7,19 +7,19 @@
             <option value="3">Oczekujący</option>
         </select>
     </div>
-    <div *ngFor="let name of tripData.boughtTripsMap().entries()">
-        <div *ngIf="fillterCheck(getText(name[0]))" class="trip">
-            <img [src]="getTrip(name[0]).img">
+    <div *ngFor="let name of authService.getBoughtArray()">
+        <div *ngIf="fillterCheck(getText(name.index))" class="trip">
+            <img [src]="getTrip(name.index).img">
             <div id="information">
-                <div>{{getTrip(name[0]).title|uppercase}}</div>
-                <div>Cena jednostkowa wycieczki:{{(getTrip(name[0]).unitPrice*tripData.multiply()).toFixed(2)}}{{tripData.currency}}</div>
-                <div>Ilość wykupionych miejsc:{{name[1]}}</div>
-                <div>Całkowity koszt:{{(name[1]*getTrip(name[0]).unitPrice*tripData.multiply()).toFixed(2)}}{{tripData.currency}}</div>
-                <div>od {{getTrip(name[0]).start}} do {{getTrip(name[0]).end}}</div>
+                <div>{{getTrip(name.index).title|uppercase}}</div>
+                <div>Cena jednostkowa wycieczki:{{(getTrip(name.index).unitPrice*tripData.multiply()).toFixed(2)}}{{tripData.currency}}</div>
+                <div>Ilość wykupionych miejsc:{{name.quantity}}</div>
+                <div>Całkowity koszt:{{(name.quantity*getTrip(name.index).unitPrice*tripData.multiply()).toFixed(2)}}{{tripData.currency}}</div>
+                <div>od {{getTrip(name.index).start}} do {{getTrip(name.index).end}}</div>
             </div>
             <div id="status">
                 Status Wycieczki:
-                <div [ngStyle]="{'color':getColor(name[0])}">{{getText(name[0])}}</div>
+                <div [ngStyle]="{'color':getColor(name.index)}">{{getText(name.index)}}</div>
             </div>
         </div>
     </div>

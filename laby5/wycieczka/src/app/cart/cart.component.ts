@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
 import {TripDataService} from '../trip-data-service/trip-data.service';
+import { AuthenticationServiceService } from '../authentication-service/authentication-service.service';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent {
-  constructor(public tripdata:TripDataService){}
+  reservationArray:any[]=[];
+  constructor(public tripdata:TripDataService,public authService:AuthenticationServiceService){}
 
   public fullCost():number{
     let sum=0;
-    this.tripdata.reservationDetail.forEach((value,key)=>{
-      sum+=value*this.getUnitPrice(key);
+    this.authService.getResevationArray().forEach(a=>{
+      sum+=a.quantity*this.getUnitPrice(a.index);
     })
     return sum;
   }

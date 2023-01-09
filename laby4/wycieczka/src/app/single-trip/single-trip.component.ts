@@ -1,7 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TripDataService } from '../trip-data-service/trip-data.service';
-import { Validator,ReactiveFormsModule,FormControl, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule,FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-single-trip',
   templateUrl: './single-trip.component.html',
@@ -75,7 +75,8 @@ export class SingleTripComponent {
       this.correctDate=true;
     }
   }
-  public changePage(){
+  public changePage(event:any){
+    event.path[3].scrollTo(0,0);
     this.firstPage=!this.firstPage;
     console.log(this.firstPage);
   }

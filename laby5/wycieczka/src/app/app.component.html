@@ -49,7 +49,7 @@
         </div>
         <div id="koszyk" (click)="openCart()" *ngIf="authService.adminPermition()||authService.managerPermition()||authService.userPermition()">
             <i class="fa-solid fa-cart-shopping"></i>
-            <div id="reservationNumber">{{tripData.allOfReservation}}</div>
+            <div id="reservationNumber">{{authService.allOfReservation}}</div>
         </div>
     </div>   
 </header>

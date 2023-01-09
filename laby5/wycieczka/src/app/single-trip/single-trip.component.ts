@@ -2,6 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TripDataService } from '../trip-data-service/trip-data.service';
 import { Validator,ReactiveFormsModule,FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthenticationServiceService } from '../authentication-service/authentication-service.service';
 @Component({
   selector: 'app-single-trip',
   templateUrl: './single-trip.component.html',
@@ -18,7 +19,7 @@ export class SingleTripComponent {
   body!:FormControl;
   correctDate:boolean=false;
   firstPage:boolean=true;
-  constructor(public tripData:TripDataService,private route: ActivatedRoute){}
+  constructor(public tripData:TripDataService,private route: ActivatedRoute,public authService:AuthenticationServiceService){}
   public ngOnInit(){
     this.route.params.subscribe(params=>{
       this.index=params['id'];
@@ -44,7 +45,7 @@ export class SingleTripComponent {
   }
 
   public getTripResevation(){
-    return this.tripData.reservationDetailMap().get(this.index);
+    return this.authService.numberOfResevation(this.index);
   }
 
   public getArray(number:number){
@@ -75,7 +76,8 @@ export class SingleTripComponent {
       this.correctDate=true;
     }
   }
-  public changePage(){
+  public changePage(event:any){
+    event.path[3].scrollTo(0,0);
     this.firstPage=!this.firstPage;
     console.log(this.firstPage);
   }

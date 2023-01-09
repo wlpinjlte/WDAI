@@ -3,6 +3,7 @@ import { Validator,ReactiveFormsModule,FormControl, FormGroup, Validators } from
 import { BrowserModule } from "@angular/platform-browser";
 import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 import { TripDataService } from '../trip-data-service/trip-data.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-trip-form',
   templateUrl: './trip-form.component.html',
@@ -24,7 +25,7 @@ export class TripFormComponent implements OnInit{
   description!:FormControl;
   now=new Date()
   today:string = this.now.getFullYear()+'-'+((this.now.getMonth()+1)>9?(this.now.getMonth()+1):'0'+(this.now.getMonth()+1))+'-'+(this.now.getDate()>9?this.now.getDate():"0"+this.now.getDate());
-  constructor(public tripData:TripDataService) {}
+  constructor(public tripData:TripDataService,public router:Router) {}
 
   ngOnInit(): void {
     console.log(this.today);
@@ -74,7 +75,8 @@ export class TripFormComponent implements OnInit{
   public onSubmit(){
       if(this.myform.valid){
         this.tripData.addToArray(this.myform.value);
-        this.close.emit(true);
+        // this.close.emit(true);
+        this.router.navigate(['/trip-list']);
       }else{
         this.correctDate=true;
         console.log("nie siema");

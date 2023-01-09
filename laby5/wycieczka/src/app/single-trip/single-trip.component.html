@@ -47,10 +47,10 @@
                     </div>
                     <p class="opiononBody">{{opinionData.body}}</p>
                 </div>
-                <button class="btn btn-primary" (click)="changePage()">Przejdz do Formularza</button>
+                <button class="btn btn-primary" (click)="changePage($event)">Przejdz do Formularza</button>
             </div>
             <div id="opinionForm" class="form-group" >
-                <i class="fa-solid fa-arrow-left" id="arrowBack" (click)="changePage()"></i>
+                <i class="fa-solid fa-arrow-left" id="arrowBack" (click)="changePage($event)"></i>
                 <form [formGroup]="myform" novalidate (ngSubmit)="onSubmit()">
                     <h2>Formularz Opini</h2>
                     <p>NICK:</p>

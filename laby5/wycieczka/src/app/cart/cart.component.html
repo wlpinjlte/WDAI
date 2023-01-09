@@ -1,8 +1,8 @@
-<div id="container">
-    <div *ngFor="let name of tripdata.reservationDetail.entries()" >
-        <div *ngIf="name[1]>0" class="item">
-            <span style='font-weight: bold'>{{name[1]}}</span> X {{getName(name[0])}} {{(name[1]*getUnitPrice(name[0])*tripdata.multiply()).toFixed(2)}}{{tripdata.currency}}
-            <button (click)="buyOne(name[0])"><i class="fa-solid fa-money-bill"></i></button>
+<div id="container" *ngIf="authService.adminPermition()||authService.managerPermition()||authService.userPermition()">
+    <div *ngFor="let name of authService.getResevationArray()">
+        <div class="item">
+            <span style='font-weight: bold'>{{name.quantity}}</span> X {{getName(name.index)}} {{(name.quantity*getUnitPrice(name.index)*tripdata.multiply()).toFixed(2)}}{{tripdata.currency}}
+            <button (click)="buyOne(name.index)"><i class="fa-solid fa-money-bill"></i></button>
         </div>
     </div>
     <div>Do zapłaty:{{(this.fullCost()*tripdata.multiply()).toFixed(2)}}{{tripdata.currency}}</div>
