@@ -6,12 +6,14 @@ import { TripFormComponent } from './trip-form/trip-form.component';
 import { TripHistoryComponent } from './trip-history/trip-history.component';
 import { SingleTripComponent } from './single-trip/single-trip.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 const routes: Routes = [
   { path: 'main-page', component: MainPageComponent },
   { path: 'login',component:LoginPageComponent},
   { path: 'trip/:id', component: SingleTripComponent},
   { path: 'trip-list', component: TripListComponent},
   { path: 'trip-form', component: TripFormComponent },
+  { path: 'admin-panel', component: AdminPanelComponent},
   { path: 'trip-history', component: TripHistoryComponent},
   { path: '', redirectTo: '/main-page', pathMatch: 'full' }
 // { path: '**', component: PageNotFoundComponent } 

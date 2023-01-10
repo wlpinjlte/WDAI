@@ -1,0 +1,10 @@
+<div id="container">
+    <div id="changePersistence">
+        Wybierz rodzaj persistence:
+        <select [(ngModel)]="persistence" (ngModelChange)="setPersistence()">
+            <option value="local">LOCAL</option>
+            <option value="session">SESSION</option>
+            <option value="none">NONE</option>
+        </select>
+    </div>
+</div>

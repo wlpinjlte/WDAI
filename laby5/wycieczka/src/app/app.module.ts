@@ -17,6 +17,7 @@ import { SingleTripComponent } from './single-trip/single-trip.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { provideFirebaseApp } from '@angular/fire/app';
 import { initializeApp } from 'firebase/app';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import { initializeApp } from 'firebase/app';
     MainPageComponent,
     TripHistoryComponent,
     SingleTripComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,

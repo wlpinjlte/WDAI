@@ -1,6 +1,6 @@
 <header>
     <select [(ngModel)]="tripData.currency">
-        <option value="$">Dolar $</option>
+        <option value="$">Dolar $</option>admin-panel works!
         <option value="€">Euro €</option>
         <option value="zł">PLN zł</option>
     </select>
@@ -10,7 +10,7 @@
         <i class="fa-solid fa-plus" routerLink="/trip-form" *ngIf="authService.adminPermition()||authService.managerPermition()"></i>
         <i class="fa-solid fa-list"routerLink="/trip-list"></i>
         <i class="fa-solid fa-timeline" routerLink="/trip-history" *ngIf="authService.adminPermition()||authService.managerPermition()||authService.userPermition()"></i>
-        <i class="fa-solid fa-shield" routerLink="" *ngIf="authService.adminPermition()"></i>
+        <i class="fa-solid fa-shield" routerLink="/admin-panel" *ngIf="authService.adminPermition()"></i>
     </div>
     <div id="mobileMenu" [ngStyle]="{'transform': isOpenMenu? 'translateX(0)':'translateX(-100%)'}">
         <div class="menuLink"  routerLink="/main-page">
@@ -25,7 +25,7 @@
         <div class="menuLink" routerLink="/trip-history" *ngIf="authService.adminPermition()||authService.managerPermition()||authService.userPermition()">
             <i class="fa-solid fa-timeline"></i> Trip History
         </div>
-        <div class="menuLink" routerLink="" *ngIf="authService.adminPermition()">
+        <div class="menuLink" routerLink="/admin-panel" *ngIf="authService.adminPermition()">
             <i class="fa-solid fa-shield"></i> Admin Panel
         </div>
     </div>

@@ -5,6 +5,7 @@ import { Observable} from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {AngularFireDatabase} from '@angular/fire/compat/database';
 import { Router } from '@angular/router';
+import * as firebase from 'firebase/app';
 @Injectable({
   providedIn: 'root'
 })
@@ -161,5 +162,10 @@ export class AuthenticationServiceService {
     array.shift();
     let boughtArray:any[]=this.isLogIn? array:[];
     return boughtArray;
+  }
+  public setPersistence(persistence:string){
+    this.angularFireAuth.setPersistence('local')
+    .then((res:any)=>console.log(res))
+    .catch((err:any)=>console.log(err));
   }
 }
