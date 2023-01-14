@@ -33,13 +33,19 @@ export class TripComponent implements OnInit{
   constructor(public tripService:TripDataService,public authService:AuthenticationServiceService){}
   curr:number=0;
   toShow:boolean=false;
+
   ngOnInit() {
     this.stars=(this.object.numberOfOpinion==0? 0:this.object.opinionSum/this.object.numberOfOpinion)
     let sizeOfArray=Math.floor(this.stars);
     this.arrayToStars=new Array(sizeOfArray);
     this.arrayToStars.map((k,v)=>v+1);
-    this.currUpadte();
+    this.authService.isDateToTrips.asObservable().subscribe((res)=>{
+      if(res){
+        this.currUpadte();
+      }
+    })
   }
+
   public addButton(): void{
     if(this.curr<this.object.maxPlace){
       this.curr+=1;
@@ -47,7 +53,6 @@ export class TripComponent implements OnInit{
       this.tripService.substractFromMap(this.object.index);
       console.log(this.object.index+"object");
     }
-    
   }
 
   public substrackButton(): void{
@@ -93,12 +98,11 @@ export class TripComponent implements OnInit{
   public starsChange(i:number):void{
     this.stars=i;
   }
+  
   public currUpadte(){
-      setTimeout(() => {
-        let numberOfResevation=this.authService.numberOfReservationMap.has(this.object.index)? this.authService.numberOfReservationMap.get(this.object.index):0;
-        this.curr=this.object.maxPlace-numberOfResevation;
-        this.avabileEmiter();
-        this.toShow=true;
-      }, 30);
+      let numberOfResevation=this.authService.numberOfReservationMap.has(this.object.index)? this.authService.numberOfReservationMap.get(this.object.index):0;
+      this.curr=this.object.maxPlace-numberOfResevation;
+      this.avabileEmiter();
+      this.toShow=true;
   }
 }

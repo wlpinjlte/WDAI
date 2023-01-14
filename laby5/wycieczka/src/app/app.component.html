@@ -40,10 +40,12 @@
         </div>
         <div id="notification" *ngIf="authService.adminPermition()||authService.managerPermition()||authService.userPermition()">
             <i class="fa-solid fa-bell"></i>
-            <div id="listOfSoonerTrips" *ngIf="tripData.soonerTripsArray().length>0">
-                <div class="soonerTripDiv" *ngFor="let index of tripData.soonerTripsArray()">
-                    <p>{{getTrip(index).title}}</p>
-                    <p>{{getTrip(index).start}}</p>
+            <div id="listOfSoonerTrips">
+                <div class="soonerTripDiv" *ngFor="let trip of authService.getBoughtArray()">
+                    <div *ngIf="tripData.addToSoonerTripsWithChecked(trip.index)">
+                        <p>{{getTrip(trip.index).title}}</p>
+                        <p>{{getTrip(trip.index).start}}</p>
+                    </div>
                 </div>
             </div>
         </div>

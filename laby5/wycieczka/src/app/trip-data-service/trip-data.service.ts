@@ -17,7 +17,7 @@ export class TripDataService {
   currency='$';
   dataFireBase:any;
   soonerTrips:string[]=[];
-
+  tripToEdit:string='';
   constructor(dataa:AngularFireDatabase,public router:Router,public authService:AuthenticationServiceService) {
     this.dataFireBase=dataa.list('/trips');
     this.trips= dataa.list('/trips').valueChanges();
@@ -41,7 +41,7 @@ export class TripDataService {
     return this.avaible;
   }
 
-  soonerTripsArray(){
+  public soonerTripsArray(){
     return this.soonerTrips;
   }
   
@@ -112,15 +112,6 @@ export class TripDataService {
   public buyTrip(index:string){
     this.dataFireBase.update(index,{'maxPlace':this.array.filter(a=> a.index==index)[0].maxPlace-this.authService.numberOfResevation(index)});
     this.authService.addBought(index);
-    let now=new Date();
-    let startOfTrip=new Date(this.array.filter(a=>a.index==index)[0].start);
-    let difference=startOfTrip.getTime()-now.getTime();
-    //converte to days
-    difference=difference/(1000*60*60*24);
-    console.log(difference);
-    if(difference>0 && difference<=30&&this.soonerTripsArray().filter(a=>a==index).length==0){
-      this.soonerTrips.push(index);
-    }
   }
 
   public buyAll(){
@@ -138,5 +129,17 @@ export class TripDataService {
     tempOpinons.push(opinonToAdd);
     console.log(tempOpinons,tempNumberOfOpinion,tempSumOpinion);
     this.dataFireBase.update(index,{opinions:tempOpinons,numberOfOpinion:tempNumberOfOpinion,opinionSum:tempSumOpinion});
+  }
+
+  public addToSoonerTripsWithChecked(index:string){
+    let now=new Date();
+    let startDay=new Date(this.tripArray().filter(a=>a.index==index)[0].start);
+    let difference=startDay.getTime()-now.getTime();
+    //converte to days
+    difference=difference/(1000*60*60*24);
+    if(difference>0 && difference<=30){
+      return true;
+    }
+    return false;
   }
 }

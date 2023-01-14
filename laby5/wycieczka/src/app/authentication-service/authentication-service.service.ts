@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TripDataService } from '../trip-data-service/trip-data.service';
 import {Auth,signInWithEmailAndPassword,signOut,createUserWithEmailAndPassword} from '@angular/fire/auth';
-import { Observable} from 'rxjs';
+import { BehaviorSubject, Observable} from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {AngularFireDatabase} from '@angular/fire/compat/database';
 import { Router } from '@angular/router';
@@ -11,21 +11,30 @@ import * as firebase from 'firebase/app';
 })
 export class AuthenticationServiceService {
   array!:any[];
-  trips?:Observable<unknown[]>;
+  userDetails?:Observable<unknown[]>;
   dataFireBase:any;
   isLogIn:boolean=false;
   idUser?='';
   userInfo:any;
-  userStatus:string='gosc';
+  userStatus:any={admin:false,manager:false,user:false};
   userFireBaseReservation:any;
   userFireBaseBought:any;
   allOfReservation=0;
   numberOfReservationMap=new Map();
+  persistence:string='local';
+  isDateToTrips:BehaviorSubject<boolean>;
+  usersArray!:any[];
+
   constructor(public auth:Auth,public angularFireAuth: AngularFireAuth,public dataa:AngularFireDatabase,public router:Router) {
+    this.isDateToTrips=new BehaviorSubject<boolean>(false);
     this.dataFireBase=dataa.list('/users');
-    this.trips= dataa.list('/users').valueChanges();
+    this.userDetails= dataa.list('/users').valueChanges();
+
+    dataa.list('/stan').valueChanges().subscribe((res:any)=>{
+      this.persistence=res[0];
+    })
+
     angularFireAuth.authState.subscribe(res=>{
-      console.log(res);
       this.isLogIn=(res && res.uid)? true:false;
       if(this.isLogIn){
         this.idUser=res?.uid;
@@ -35,31 +44,39 @@ export class AuthenticationServiceService {
   }
 
   public downloadInfrmation(){
-    this.trips?.subscribe(res=>{
-      console.log(res);
-      let temp:any[]=res;
-      this.userInfo=temp.filter(a=>a.Userid==this.idUser)[0];
+    this.userDetails?.subscribe(res=>{
+      this.usersArray=res;
+      console.log(this.usersArray);
+      this.userInfo=this.usersArray.filter(a=>a.Userid==this.idUser)[0];
       this.userStatus=this.userInfo.role;
+
       this.userFireBaseReservation=this.dataa.list('/users/'+this.userInfo.index+'/reservation');
       this.userFireBaseBought=this.dataa.list('/users/'+this.userInfo.index+'/bought');
+
       this.allOfReservation=0;
       this.numberOfReservationMap.clear();
       this.getResevationArray().forEach(a=>{
         this.allOfReservation+=a.quantity;
         this.numberOfReservationMap.set(a.index,a.quantity);
       })
-      console.log(this.userInfo);
-      console.log(this.numberOfReservationMap);
+
+      this.isDateToTrips.next(true);
     });
   }
-
+  
   public creatAccount(email:string,password:string){
-    createUserWithEmailAndPassword(this.auth,email,password)
-    .then((res)=>{
-      console.log(res);
-      let index=this.dataFireBase.push()
-      index.set({'role':'user','Userid':res.user.uid,'reservation':{'0':{'index':'-1'}},'bought':{'0':{'index':'-1'}},'index':index.key});
-      this.router.navigate(['/main-page']);
+    this.angularFireAuth.setPersistence(this.persistence)
+    .then(()=>{
+      createUserWithEmailAndPassword(this.auth,email,password)
+      .then((res)=>{
+        console.log(res);
+        let index=this.dataFireBase.push()
+        index.set({'role':{'user':true,'admin':false,'manager':false,'banned':false},'Userid':res.user.uid,'reservation':{'0':{'index':'-1'}},'bought':{'0':{'index':'-1'}},'index':index.key,'name':email});
+        this.router.navigate(['/main-page']);
+      })
+      .catch(err=>{
+        alert(err.message);
+      });
     })
     .catch(err=>{
       alert(err.message);
@@ -67,14 +84,17 @@ export class AuthenticationServiceService {
   }
 
   public logIn(email:string,password:string){
-    signInWithEmailAndPassword(this.auth,email,password)
-    .then((res)=>{
-      console.log(res);
-      this.router.navigate(['/main-page']);
+    this.angularFireAuth.setPersistence(this.persistence)
+    .then(()=>{
+      signInWithEmailAndPassword(this.auth,email,password)
+      .then((res)=>{
+        console.log(res);
+        this.router.navigate(['/main-page']);
+      })
+      .catch(err=>{
+        alert(err.message);
+      });
     })
-    .catch(err=>{
-      alert(err.message);
-    });
   }
 
   public logOut(){
@@ -82,33 +102,34 @@ export class AuthenticationServiceService {
     this.userInfo=[];
     this.idUser='';
     signOut(this.auth);
+    this.router.navigate(['/main-page']);
   }
 
   public adminPermition(){
-    if(this.userStatus=='admin'){
+    if(this.userStatus.admin==true){
       return true;
     }
     return false;
   }
 
   public managerPermition(){
-    if(this.userStatus=='manager'){
+    if(this.userStatus.manager==true){
       return true;
     }
     return false;
   }
 
   public userPermition(){
-    if(this.userStatus=='user'){
+    if(this.userStatus.user==true){
       return true;
     }
     return false;
   }
 
   public addReservation(index:string){
-    console.log(this.userInfo.reservation);
     let reservationArray:any[]=this.getResevationArray();
     let tripToReservation=reservationArray.filter(a=>a.index==index);
+
     if(tripToReservation.length>0){
       this.userFireBaseReservation.update(tripToReservation[0].id,{'quantity':tripToReservation[0].quantity+1});
     }else{
@@ -122,6 +143,7 @@ export class AuthenticationServiceService {
     this.removeAllReservation(index);
     let boughtArray:any[]=this.getBoughtArray();
     let tripToBought=boughtArray.filter(a=>a.index==index)
+
     if(tripToBought.length>0){
       this.userFireBaseBought.update(tripToBought[0].id,{'quantity':tripToBought[0].quantity+quantity});
     }else{
@@ -133,6 +155,7 @@ export class AuthenticationServiceService {
   public removeReservation(index:string){
     let reservationArray:any[]=this.getResevationArray();
     let tripToReservation=reservationArray.filter(a=>a.index==index);
+    
     if(tripToReservation[0].quantity==1){
       this.userFireBaseReservation.remove(tripToReservation[0].id);
     }else{
@@ -143,7 +166,6 @@ export class AuthenticationServiceService {
   public removeAllReservation(index:string){
     let reservationArray:any[]=this.getResevationArray();
     let tripToReservation=reservationArray.filter(a=>a.index==index);
-    console.log(reservationArray,index);
     this.userFireBaseReservation.remove(tripToReservation[0].id);
   }
 
@@ -157,15 +179,22 @@ export class AuthenticationServiceService {
     let reservationArray:any[]=this.isLogIn? array:[];
     return reservationArray;
   }
+
   public getBoughtArray(){
+    if(this.userInfo==undefined){
+      return [];
+    }
     let array=Object.values(this.userInfo.bought);
     array.shift();
     let boughtArray:any[]=this.isLogIn? array:[];
     return boughtArray;
   }
+
   public setPersistence(persistence:string){
-    this.angularFireAuth.setPersistence('local')
-    .then((res:any)=>console.log(res))
-    .catch((err:any)=>console.log(err));
+    this.dataa.list('/stan').set('persistence',persistence);
+  }
+
+  public changeRole(roleToChange:string,valuesToChange:boolean,indexOfUser:string){
+    this.dataa.list('/users/'+indexOfUser+'/role').set(roleToChange,valuesToChange);
   }
 }

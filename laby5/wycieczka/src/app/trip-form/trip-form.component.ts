@@ -3,6 +3,7 @@ import { Validator,ReactiveFormsModule,FormControl, FormGroup, Validators } from
 import { BrowserModule } from "@angular/platform-browser";
 import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 import { TripDataService } from '../trip-data-service/trip-data.service';
+import { formatDate } from '@angular/common';
 @Component({
   selector: 'app-trip-form',
   templateUrl: './trip-form.component.html',
@@ -10,7 +11,6 @@ import { TripDataService } from '../trip-data-service/trip-data.service';
 })
 
 export class TripFormComponent implements OnInit{
-  @Output() close=new EventEmitter<boolean>();
   correctDate=false;
   myform!:FormGroup;
   title!:FormControl;
@@ -27,7 +27,6 @@ export class TripFormComponent implements OnInit{
   constructor(public tripData:TripDataService) {}
 
   ngOnInit(): void {
-    console.log(this.today);
     this.title= new FormControl('',[
       Validators.required,
       Validators.pattern("\([A-z]+[ ]?\)+")
@@ -70,11 +69,29 @@ export class TripFormComponent implements OnInit{
       description:this.description,
       imgCarousel:this.imgCarousel
     });
+    this.loadContent();
   }
+
+  public loadContent(){
+    if(this.tripData.tripToEdit!=''){
+      let trip=this.tripData.tripArray().filter(a=>a.index==this.tripData.tripToEdit)[0];
+      this.myform.patchValue({
+        title:trip.title,
+        Contry:trip.Contry,
+        start: formatDate(trip.start,'yyyy-MM-dd', 'en'),
+        end: formatDate(trip.end,'yyyy-MM-dd', 'en'),
+        unitPrice:trip.unitPrice,
+        maxPlace:trip.maxPlace,
+        img:trip.img,
+        description:trip.description,
+        imgCarousel:trip.imgCarousel.reduce((a:any,b:any)=>a+" "+b)
+      });
+    }
+  }
+
   public onSubmit(){
       if(this.myform.valid){
         this.tripData.addToArray(this.myform.value);
-        this.close.emit(true);
       }else{
         this.correctDate=true;
         console.log("nie siema");

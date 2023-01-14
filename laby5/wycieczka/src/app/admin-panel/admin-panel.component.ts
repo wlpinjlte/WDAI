@@ -6,8 +6,11 @@ import { AuthenticationServiceService } from '../authentication-service/authenti
   styleUrls: ['./admin-panel.component.css']
 })
 export class AdminPanelComponent {
-  constructor(public authService:AuthenticationServiceService){}
   persistence:string='';
+  constructor(public authService:AuthenticationServiceService){
+    this.persistence=authService.persistence;
+  }
+  
   public setPersistence(){
     console.log(this.persistence);
     this.authService.setPersistence(this.persistence);
