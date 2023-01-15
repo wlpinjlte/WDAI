@@ -3,7 +3,7 @@ import { AuthenticationServiceService } from '../authentication-service/authenti
 @Component({
   selector: 'app-admin-panel',
   templateUrl: './admin-panel.component.html',
-  styleUrls: ['./admin-panel.component.css']
+  styleUrls: ['./admin-panel.component.css','../../assets/bootstrap/bootstrap.min.css']
 })
 export class AdminPanelComponent {
   persistence:string='';
@@ -14,5 +14,10 @@ export class AdminPanelComponent {
   public setPersistence(){
     console.log(this.persistence);
     this.authService.setPersistence(this.persistence);
+  }
+
+  public changeUsersRole(roleToChange:string,valuesToChange:boolean,indexOfUser:string){
+    console.log(roleToChange,valuesToChange,indexOfUser);
+    this.authService.changeRole(roleToChange,valuesToChange,indexOfUser);
   }
 }

@@ -1,4 +1,4 @@
-<div id="container" [ngStyle]="{'background-color': getStockColor()}" [ngClass]="{'cheapest':tripService.highlightedArray()[index]==1||tripService.highlightedArray()[index]==-1,'mostExpensive': tripService.highlightedArray()[index]==2,'normal':tripService.highlightedArray()[index]==0&&curr>3,'orangeBorder':tripService.highlightedArray()[index]==0&&curr<=3}" *ngIf="toShow">
+<div id="container" [ngStyle]="{'background-color': getStockColor()}" [ngClass]="{'cheapest':tripService.highlightedArray()[index]==1||tripService.highlightedArray()[index]==-1,'mostExpensive': tripService.highlightedArray()[index]==2,'normal':tripService.highlightedArray()[index]==0&&curr>3,'orangeBorder':tripService.highlightedArray()[index]==0&&curr<=3}">
     <img [src]="object.img" routerLink="/trip/{{object.index}}">
     <h3>{{object.title|uppercase}}</h3>
     <p>{{object.description}}</p>
@@ -21,6 +21,7 @@
             <button (click)="addButton()">-</button>
         </div>
         <button (click)="deleteComponet()" id="deleteButton" *ngIf="authService.adminPermition()||authService.managerPermition()">X</button>
+        <button (click)="modifyTrip()" id="modifyButton" *ngIf="authService.adminPermition()||authService.managerPermition()" routerLink="/trip-form"><i class="fa-solid fa-pencil"></i></button>
     </div>
 </div>
 

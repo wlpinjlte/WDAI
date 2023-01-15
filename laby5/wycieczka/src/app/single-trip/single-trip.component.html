@@ -47,7 +47,7 @@
                     </div>
                     <p class="opiononBody">{{opinionData.body}}</p>
                 </div>
-                <button class="btn btn-primary" (click)="changePage($event)">Przejdz do Formularza</button>
+                <button class="btn btn-primary" (click)="changePage($event)" *ngIf="authService.opinionRequirements(index)&&!authService.userStatus.banned">Przejdz do Formularza</button>
             </div>
             <div id="opinionForm" class="form-group" >
                 <i class="fa-solid fa-arrow-left" id="arrowBack" (click)="changePage($event)"></i>

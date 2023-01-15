@@ -142,4 +142,9 @@ export class TripDataService {
     }
     return false;
   }
+
+  public updateTrip(index:string,trip:any){
+    trip.imgCarousel=trip.imgCarousel.split(' ');
+    this.dataFireBase.update(index,trip);
+  }
 }

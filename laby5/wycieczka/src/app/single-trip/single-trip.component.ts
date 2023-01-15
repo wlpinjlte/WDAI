@@ -64,6 +64,7 @@ export class SingleTripComponent {
       opinonObject['rating']=this.starsForm;
       //dodawnie do bazy danych
       // this.tripData.addOpinion(opinonObject,this.index);
+      this.authService.changeIsRated(this.index);
       this.firstPage=true;
       this.correctDate=false;
       this.data.opinions.push(opinonObject);

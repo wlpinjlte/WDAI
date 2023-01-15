@@ -4,6 +4,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 import { TripDataService } from '../trip-data-service/trip-data.service';
 import { formatDate } from '@angular/common';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-trip-form',
   templateUrl: './trip-form.component.html',
@@ -24,12 +25,14 @@ export class TripFormComponent implements OnInit{
   description!:FormControl;
   now=new Date()
   today:string = this.now.getFullYear()+'-'+((this.now.getMonth()+1)>9?(this.now.getMonth()+1):'0'+(this.now.getMonth()+1))+'-'+(this.now.getDate()>9?this.now.getDate():"0"+this.now.getDate());
-  constructor(public tripData:TripDataService) {}
+  isUpdate:boolean=false;
+  index:string='';
+  constructor(public tripData:TripDataService,public router:Router) {}
 
   ngOnInit(): void {
     this.title= new FormControl('',[
       Validators.required,
-      Validators.pattern("\([A-z]+[ ]?\)+")
+      Validators.pattern("\([0-z]+[ ]?\)+")
     ]);
     this.Contry=new FormControl('',[
       Validators.required,
@@ -74,7 +77,9 @@ export class TripFormComponent implements OnInit{
 
   public loadContent(){
     if(this.tripData.tripToEdit!=''){
+      this.isUpdate=true;
       let trip=this.tripData.tripArray().filter(a=>a.index==this.tripData.tripToEdit)[0];
+      this.index=this.tripData.tripToEdit
       this.myform.patchValue({
         title:trip.title,
         Contry:trip.Contry,
@@ -87,14 +92,19 @@ export class TripFormComponent implements OnInit{
         imgCarousel:trip.imgCarousel.reduce((a:any,b:any)=>a+" "+b)
       });
     }
+    this.tripData.tripToEdit='';
   }
 
   public onSubmit(){
       if(this.myform.valid){
-        this.tripData.addToArray(this.myform.value);
+        if(this.isUpdate){
+          this.tripData.updateTrip(this.index,this.myform.value);
+        }else{
+          this.tripData.addToArray(this.myform.value);
+        }
+        this.router.navigate(['/trip-list']);
       }else{
         this.correctDate=true;
-        console.log("nie siema");
       }
   }
 }

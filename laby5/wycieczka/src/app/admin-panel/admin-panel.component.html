@@ -7,7 +7,27 @@
             <option value="none">NONE</option>
         </select>
     </div>
-    <div *ngFor="let name of authService.usersArray">
-        {{name.name}}
+    <div *ngFor="let name of authService.usersArray" class="userContainer">
+        <div>{{name.name}}</div>
+        <div class="buttonDiv">
+            <div>Admin Role:</div>
+            <button class="btn btn-primary" (click)="changeUsersRole('admin',true,name.index)" *ngIf="!name.role.admin">Give admin</button>
+            <button class="btn btn-primary" (click)="changeUsersRole('admin',false,name.index)" *ngIf="name.role.admin">Take admin</button>
+        </div>
+        <div class="buttonDiv">
+            <div>Manager Role:</div>
+            <button class="btn btn-primary" (click)="changeUsersRole('manager',true,name.index)" *ngIf="!name.role.manager">Give manager</button>
+            <button class="btn btn-primary" (click)="changeUsersRole('manager',false,name.index)" *ngIf="name.role.manager">Take manager</button>
+        </div>
+        <div class="buttonDiv">
+            <div>User Role:</div>
+            <button class="btn btn-primary" (click)="changeUsersRole('user',true,name.index)" *ngIf="!name.role.user">Give user</button>
+            <button class="btn btn-primary" (click)="changeUsersRole('user',false,name.index)" *ngIf="name.role.user">Take user</button>
+        </div>
+        <div class="buttonDiv">
+            <div>Ban User:</div>
+            <button class="btn btn-primary" (click)="changeUsersRole('banned',true,name.index)" *ngIf="!name.role.banned">Give ban</button>
+            <button class="btn btn-primary" (click)="changeUsersRole('banned',false,name.index)" *ngIf="name.role.banned">Take ban</button>
+        </div>
     </div>
 </div>

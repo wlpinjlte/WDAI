@@ -32,9 +32,9 @@ export class TripComponent implements OnInit{
   arrayToStars:number[]=[];
   constructor(public tripService:TripDataService,public authService:AuthenticationServiceService){}
   curr:number=0;
-  toShow:boolean=false;
 
   ngOnInit() {
+    this.curr=this.object.maxPlace;
     this.stars=(this.object.numberOfOpinion==0? 0:this.object.opinionSum/this.object.numberOfOpinion)
     let sizeOfArray=Math.floor(this.stars);
     this.arrayToStars=new Array(sizeOfArray);
@@ -103,6 +103,9 @@ export class TripComponent implements OnInit{
       let numberOfResevation=this.authService.numberOfReservationMap.has(this.object.index)? this.authService.numberOfReservationMap.get(this.object.index):0;
       this.curr=this.object.maxPlace-numberOfResevation;
       this.avabileEmiter();
-      this.toShow=true;
+  }
+
+  public modifyTrip(){
+    this.tripService.tripToEdit=this.object.index;
   }
 }

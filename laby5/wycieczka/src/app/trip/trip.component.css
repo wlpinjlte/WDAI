@@ -99,3 +99,17 @@ i{
 #container>p{
     height: 8rem;
 }
+
+#modifyButton{
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    left:3%;
+    top:3%;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+#modifyButton>i{
+    color:black;
+}

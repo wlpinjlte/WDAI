@@ -65,6 +65,7 @@
             }">
         </div>
         <p *ngIf="correctDate" [ngStyle]="{'color':'red'}">Popraw dane wprowadzone do formularza</p>
-        <button type="submit" class="btn btn-primary">Dodaj wycieczke</button>
+        <button type="submit" class="btn btn-primary" *ngIf="!isUpdate">Dodaj wycieczke</button>
+        <button type="submit" class="btn btn-primary" *ngIf="isUpdate">Uaktualnij wycieczke</button>
     </form>
 </div>

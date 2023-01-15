@@ -16,7 +16,7 @@ export class AuthenticationServiceService {
   isLogIn:boolean=false;
   idUser?='';
   userInfo:any;
-  userStatus:any={admin:false,manager:false,user:false};
+  userStatus:any={admin:false,manager:false,user:false,banned:false};
   userFireBaseReservation:any;
   userFireBaseBought:any;
   allOfReservation=0;
@@ -98,7 +98,7 @@ export class AuthenticationServiceService {
   }
 
   public logOut(){
-    this.userStatus='gosc';
+    this.userStatus={admin:false,manager:false,user:false,banned:false};
     this.userInfo=[];
     this.idUser='';
     signOut(this.auth);
@@ -148,7 +148,7 @@ export class AuthenticationServiceService {
       this.userFireBaseBought.update(tripToBought[0].id,{'quantity':tripToBought[0].quantity+quantity});
     }else{
       let referance=this.userFireBaseBought.push();
-      referance.set({'index':index,'quantity':quantity,'id':referance.key});
+      referance.set({'index':index,'quantity':quantity,'id':referance.key,'isRated':false});
     }
   }
 
@@ -166,7 +166,10 @@ export class AuthenticationServiceService {
   public removeAllReservation(index:string){
     let reservationArray:any[]=this.getResevationArray();
     let tripToReservation=reservationArray.filter(a=>a.index==index);
-    this.userFireBaseReservation.remove(tripToReservation[0].id);
+    console.log(tripToReservation);
+    if(tripToReservation.length>0){
+      this.userFireBaseReservation.remove(tripToReservation[0].id);
+    } 
   }
 
   public numberOfResevation(index:string){
@@ -196,5 +199,23 @@ export class AuthenticationServiceService {
 
   public changeRole(roleToChange:string,valuesToChange:boolean,indexOfUser:string){
     this.dataa.list('/users/'+indexOfUser+'/role').set(roleToChange,valuesToChange);
+  }
+
+  public opinionRequirements(index:string){
+    let boughtArray=this.getBoughtArray();
+    let tripToOpinion=boughtArray.filter(a=>a.index==index)
+    if(tripToOpinion.length>0){
+      if(tripToOpinion[0].isRated==false){
+        return true;
+      }
+    }
+    return false;
+  }
+  public changeIsRated(index:string){
+    let boughtArray=this.getBoughtArray();
+    let tripIsRatingToChange=boughtArray.filter(a=>a.index==index)
+    if(tripIsRatingToChange.length>0){
+      this.dataa.list('/users/'+this.userInfo.index+'/bought/').update(tripIsRatingToChange[0].id,{'isRated':true});
+    }
   }
 }

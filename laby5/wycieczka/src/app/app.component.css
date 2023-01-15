@@ -188,13 +188,14 @@ app-trip-form{
 #listOfSoonerTrips{
     position: absolute;
     background-color: white;
-    padding: 1rem;
     display: none;
     flex-direction: column;
     width: 10rem;
     left:-4.4rem;
 }
-
+.soonerTripDiv>div{
+    padding: 1rem;
+}
 #notification:hover #listOfSoonerTrips{
     display: flex;
 }
