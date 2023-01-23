@@ -34,7 +34,7 @@
             </div>
           </div>
     </div>
-    <div id="rightSide" [ngStyle]="{'min-height':firstPage? '0':'29rem','max-height':firstPage? '80vh':'29rem','overflow-y':firstPage? 'auto':'hidden'}">
+    <div id="rightSide" [ngStyle]="{'min-height':firstPage? '0':'29rem','max-height':firstPage? '80vh':'29rem','overflow-y':firstPage? 'auto':'hidden'}" #card>
         <div id="card" [ngStyle]="{'transform':firstPage? 'rotateY(0)':'rotateY(180deg)'}">
             <div id="opinonContainer">
                 <h1>Opinie o Wycieczce</h1>
@@ -47,10 +47,10 @@
                     </div>
                     <p class="opiononBody">{{opinionData.body}}</p>
                 </div>
-                <button class="btn btn-primary" (click)="changePage($event)" *ngIf="authService.opinionRequirements(index)&&!authService.userStatus.banned">Przejdz do Formularza</button>
+                <button class="btn btn-primary" (click)="changePage()" *ngIf="authService.opinionRequirements(index)&&!authService.userStatus.banned">Przejdz do Formularza</button>
             </div>
             <div id="opinionForm" class="form-group" >
-                <i class="fa-solid fa-arrow-left" id="arrowBack" (click)="changePage($event)"></i>
+                <i class="fa-solid fa-arrow-left" id="arrowBack" (click)="changePage()"></i>
                 <form [formGroup]="myform" novalidate (ngSubmit)="onSubmit()">
                     <h2>Formularz Opini</h2>
                     <p>NICK:</p>

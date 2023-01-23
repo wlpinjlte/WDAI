@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,ElementRef,OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TripDataService } from '../trip-data-service/trip-data.service';
 import { Validator,ReactiveFormsModule,FormControl, FormGroup, Validators } from '@angular/forms';
@@ -9,6 +9,7 @@ import { AuthenticationServiceService } from '../authentication-service/authenti
   styleUrls: ['./single-trip.component.css','../../assets/bootstrap/bootstrap.min.css']
 })
 export class SingleTripComponent {
+  @ViewChild('card') card!:ElementRef;
   index:string='-1';
   data:any;
   stars:number=0;
@@ -63,7 +64,7 @@ export class SingleTripComponent {
       let opinonObject=this.myform.value;
       opinonObject['rating']=this.starsForm;
       //dodawnie do bazy danych
-      // this.tripData.addOpinion(opinonObject,this.index);
+      this.tripData.addOpinion(opinonObject,this.index);
       this.authService.changeIsRated(this.index);
       this.firstPage=true;
       this.correctDate=false;
@@ -77,8 +78,8 @@ export class SingleTripComponent {
       this.correctDate=true;
     }
   }
-  public changePage(event:any){
-    event.path[3].scrollTo(0,0);
+  public changePage(){
+    this.card.nativeElement.scrollTo(0,0);
     this.firstPage=!this.firstPage;
     console.log(this.firstPage);
   }
