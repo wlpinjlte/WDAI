@@ -58,10 +58,10 @@ function loadSubregions(subregion,mapForSubregions){
     subregionDiv.querySelector(".data").addEventListener("click",()=>{
         let arrow=subregionDiv.querySelector(".data").querySelector("div");
         if(openn){
-            regionContainer.style.display="none";
+            regionContainer.style.maxHeight="0";
             arrow.style.transform="rotate(0deg)";
         }else{
-            regionContainer.style.display="flex";
+            regionContainer.style.maxHeight="270vh";
             arrow.style.transform="rotate(90deg)";
         }
         openn=!openn;

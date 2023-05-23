@@ -62,11 +62,16 @@ main{
 }
 
 .region-container{
-    display: none;
+    display: flex;
     flex-direction: column;
     overflow: hidden;
+    max-height: 0;
+    transition: 1s;
 }
-
+.region:hover{
+    transform: scale(1.1);
+    transition: 0.5s;
+}
 .region>img{
     width: 8%;
     height: 8%;
